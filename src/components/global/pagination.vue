@@ -1,20 +1,17 @@
 <template>
-  <div>
-    <div class="pagination flex-between" v-if='pagination.total != 0'>
-      <span>{{$t('common.showNum')}}&nbsp;{{pagination.currentPage}}-{{pagination.pageSize}}&nbsp;{{$t('common.totalNum')}}&nbsp;{{pagination.total}}&nbsp;{{$t('common.rows')}}</span>
-      <el-pagination
-        background
-        :small="small"
-        :pager-count= "5"
-        @current-change="currentChange"
-        @size-change="sizeChange"
-        :current-page.sync="pagination.currentPage"
-        :page-sizes="pageSizes"
-        :page-size="pagination.pageSize"
-        :total="pagination.total"
-        :layout="layout">
-      </el-pagination>
-    </div>
+  <div class="pagination" v-if='pagination.total != 0'>
+    <el-pagination
+      background
+      :small="small"
+      :pager-count= "5"
+      @current-change="currentChange"
+      @size-change="sizeChange"
+      :current-page.sync="pagination.currentPage"
+      :page-sizes="pageSizes"
+      :page-size="pagination.pageSize"
+      :total="pagination.total"
+      :layout="layout">
+    </el-pagination>
   </div>
 </template>
 
@@ -28,7 +25,7 @@ export default {
     },
     layout: {
       default: () => { // total, sizes, prev, pager, next, jumper
-        return 'sizes, prev, pager, next, jumper'
+        return 'prev, pager, next, sizes, jumper'
       }
     },
     pagination: {
@@ -81,5 +78,4 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-
 </style>

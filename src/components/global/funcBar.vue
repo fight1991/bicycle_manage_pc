@@ -13,4 +13,8 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+  .function-container {
+    padding: 15px 10px 10px;
+    background-color: #fff;
+  }
 </style>

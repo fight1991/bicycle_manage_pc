@@ -1,54 +1,48 @@
 <template>
-  <section class="sys-main flex-column-between bg-c" v-setH:min="setDivH">
-    <div class="sys-table-container">
-      <!-- 查询区域 -->
-      <search-bar>
-        <el-form size="mini" label-width="0px" :model="searchForm">
-          <el-row :gutter="15">
-            <el-col :span="6">
-              <el-form-item>
-                <el-input v-model="searchForm.version" placeholder="版本号"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item>
-                <el-select style="width:100%" v-model="searchForm.type" placeholder="choose">
-                  <el-option v-for="item in typeList" :label="item.label" :value="item.status" :key="item.status"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6">
-              <el-form-item>
-                <el-select style="width:100%" v-model="searchForm.status" placeholder="type">
-                  <el-option v-for="(item,index) in statusList" :label="item" :value="item" :key="item + index"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="6" align="left">
-              <search-button type="warning" icon="icon-clear" @click="reset"></search-button>
-              <search-button type="success" icon="icon-search" @click="search"></search-button>
-            </el-col>
-          </el-row>
-        </el-form>
-      </search-bar>
-      <!-- 表格区域 -->
-      <func-bar>
-        <el-row class="table-btn" type="flex" justify="end">
-          <el-button size="mini" icon="iconfont icon-import">导入</el-button>
-          <el-button size="mini" icon="el-icon-delete">批量发布</el-button>
-          <el-button size="mini" icon="el-icon-delete">批量删除</el-button>
+  <section class="sys-main">
+    <!-- 查询区域 -->
+    <search-bar>
+      <el-form size="mini" label-width="0px" :model="searchForm">
+        <el-row :gutter="15">
+          <el-col :span="6">
+            <el-form-item>
+              <el-input v-model="searchForm.version" placeholder="版本号"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item>
+              <el-select style="width:100%" v-model="searchForm.type" placeholder="choose">
+                <el-option v-for="item in typeList" :label="item.label" :value="item.status" :key="item.status"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item>
+              <el-select style="width:100%" v-model="searchForm.status" placeholder="type">
+                <el-option v-for="(item,index) in statusList" :label="item" :value="item" :key="item + index"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6" align="left">
+            <search-button type="warning" icon="icon-clear" @click="reset"></search-button>
+            <search-button type="success" icon="icon-search" @click="search"></search-button>
+          </el-col>
         </el-row>
-        <common-table :tableHeadData="tableHead" :select.sync="selection" :selectBox="true" :tableList="resultList">
-        </common-table>
-      </func-bar>
-    </div>
-    <div class="page-list">
-      <div class="states-row">
-        <span><i class="el-icon-success"></i>正常</span>
-        <span><i class="el-icon-remove"></i>离线</span>
+      </el-form>
+    </search-bar>
+    <!-- 表格区域 -->
+    <func-bar>
+      <el-row class="table-btn" type="flex" justify="end">
+        <el-button size="mini" icon="iconfont icon-import">导入</el-button>
+        <el-button size="mini" icon="el-icon-delete">批量发布</el-button>
+        <el-button size="mini" icon="el-icon-delete">批量删除</el-button>
+      </el-row>
+      <common-table :tableHeadData="tableHead" :select.sync="selection" :selectBox="true" :tableList="resultList">
+      </common-table>
+      <div class="page-list">
+        <page-box :pagination.sync="pagination" @change="getList"></page-box>
       </div>
-      <page-box :pagination.sync="pagination" @change="getList"></page-box>
-    </div>
+    </func-bar>
   </section>
 </template>
 <script>
@@ -67,7 +61,7 @@ export default {
       pagination: {
         pageSize: 50,
         currentPage: 1,
-        total: 0
+        total: 5
       },
       tableHead: [
         {

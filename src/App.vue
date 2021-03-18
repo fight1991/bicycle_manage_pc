@@ -16,6 +16,6 @@ export default {
 #app {
   width: 100%;
   height: 100%;
-  color: #4c4c4c;
+  color: @sys-text;
 }
 </style>

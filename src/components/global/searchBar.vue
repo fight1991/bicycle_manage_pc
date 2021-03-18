@@ -23,4 +23,9 @@ export default {
 .list-complete-leave-active {
   position: absolute;
 }
+.search-container {
+  padding: 15px 10px 10px;
+  background-color: #fff;
+  margin-bottom: 15px;
+}
 </style>
