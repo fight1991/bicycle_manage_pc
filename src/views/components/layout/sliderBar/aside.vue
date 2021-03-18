@@ -30,6 +30,7 @@ export default {
       movePosition: 0
     }
   },
+  props: ['startP', 'endP'],
   computed: {
     isCollapase () {
       return this.$store.state.collapse
@@ -73,7 +74,7 @@ export default {
       _this.startX = e.clientX
       document.onselectstart = function () { return false }
       document.onmousemove = function (e) {
-        if (e.clientX >= 210 && e.clientX <= 320) {
+        if (e.clientX >= _this.startP && e.clientX <= _this.endP) {
           _this.$emit('getMoveDistance', e.clientX)
         }
       }

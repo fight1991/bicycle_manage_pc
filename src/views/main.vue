@@ -7,7 +7,7 @@
             <img :src="logoSrc">
             <span v-show="!$store.state.collapse">后台管理系统</span>
           </div>
-          <layout-aside @getMoveDistance="getMoveDistance"></layout-aside>
+          <layout-aside :startP="startP" :endP="endP" @getMoveDistance="getMoveDistance"></layout-aside>
         </div>
       </el-aside>
       <el-container class="main-container">
@@ -36,7 +36,9 @@ export default {
   data () {
     return {
       logoSrc: require('@/assets/logo.png'),
-      distance: 210
+      distance: 260,
+      startP: 260,
+      endP: 420
     }
   },
   created () {
@@ -44,7 +46,7 @@ export default {
   },
   computed: {
     isDuration () {
-      return this.distance > 215
+      return this.distance > this.initValue
     }
   },
   methods: {
@@ -65,12 +67,12 @@ export default {
 .logo {
   display: flex;
   align-items: center;
-  height: 50px;
-  padding-left: 10px;
+  height: 70px;
+  // padding-left: 10px;
   background-color: rgba(255,255,255,.1);
   box-sizing: border-box;
   img {
-    width: 40px;
+    width: 60px;
   }
   span {
     color: #f5f5f5;
