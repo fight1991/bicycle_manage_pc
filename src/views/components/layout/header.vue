@@ -21,11 +21,11 @@
       </div> -->
       <!-- 用户名 -->
       <div class="tag-box">
-        <el-tag size="small">{{$store.getters.username}}</el-tag>
+        <el-tag size="small">乔峰</el-tag>
       </div>
       <!-- 用户角色 -->
       <div class="tag-box">
-        <el-tag type="success" size="small">{{roleName}}</el-tag>
+        <el-tag type="success" size="small">丐帮帮主</el-tag>
       </div>
       <!-- 用户画像 -->
       <el-dropdown

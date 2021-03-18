@@ -44,8 +44,8 @@
     </div>
     <div class="page-list">
       <div class="states-row">
-        <span><i class="el-icon-success"></i> {{$t('common.normal')}}</span>
-        <span><i class="el-icon-remove"></i> {{$t('common.offline')}}</span>
+        <span><i class="el-icon-success"></i>正常</span>
+        <span><i class="el-icon-remove"></i>离线</span>
       </div>
       <page-box :pagination.sync="pagination" @change="getList"></page-box>
     </div>
@@ -60,6 +60,7 @@ export default {
         type: '',
         status: ''
       },
+      typeList: [],
       statusList: [],
       resultList: [],
       selection: [],

@@ -2,7 +2,7 @@
 <template>
 <!-- eslint-disable vue/valid-v-bind -->
   <div style="position:relative">
-    <span class="num-count" v-show="selectBox && selection.length>0">{{$t('common.checked')}}<span class="num">{{selection.length}}</span></span>
+    <span class="num-count" v-show="selectBox && selection.length>0">已选择<span class="num">{{selection.length}}</span></span>
     <!--  自定义表头显示项目数 -->
     <el-popover popper-class="tableBtn-popper" v-if="checked">
       <ul>
@@ -23,7 +23,7 @@
       highlight-current-row
       :border="border">
       <el-table-column v-if="selectBox" type="selection" align="center" width="40"></el-table-column>
-      <el-table-column v-if="showNum" width="50" :label="$t('common.serNum')" align="center">
+      <el-table-column v-if="showNum" width="50" label="序号" align="center">
         <template slot-scope="scope">
           {{(scope.$index + 1) + pagination.pageSize*(pagination.currentPage - 1)}}
         </template>
@@ -42,9 +42,9 @@
             <el-tooltip
               class="text-cut"
               effect="dark"
-              :content="$t(item.label)"
+              :content="item.label"
               placement="top">
-              <div>{{$t(item.label)}}</div>
+              <div>{{item.label}}</div>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -61,9 +61,9 @@
             <el-tooltip
               class="text-cut"
               effect="dark"
-              :content="$t(item.label)"
+              :content="item.label"
               placement="top">
-              <div>{{$t(item.label)}}</div>
+              <div>{{item.label}}</div>
             </el-tooltip>
           </template>
           <template slot-scope="scope">

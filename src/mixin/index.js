@@ -1,5 +1,4 @@
 import { mapState } from 'vuex'
-import { translateRole } from '@/util'
 export default {
   data () {
     return {
@@ -17,26 +16,10 @@ export default {
       access: state => state.access
     }),
     roleName () {
-      return this.$t(translateRole(this.access))
+      return this.access
     }
   },
   methods: {
-    // 翻译状态
-    translateStatus (num) {
-      let value = ''
-      switch (Number(num)) {
-        case 1:
-          value = this.$t('common.normal')
-          break
-        case 2:
-          value = this.$t('common.abnormal')
-          break
-        default:
-          value = this.$t('common.offline')
-          break
-      }
-      return value
-    },
     // 获取国家列表
     async getCountryList () {
       let { result } = await this.$get({
@@ -60,10 +43,6 @@ export default {
         return Math.abs(temp.toFixed(num))
       }
       return temp.toFixed(num)
-    },
-    // 校验提示
-    messageValid (type) {
-      return this.$t('common.' + type)
     }
   }
 }

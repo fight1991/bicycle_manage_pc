@@ -56,8 +56,9 @@ export default {
   },
   methods: {
     menuPemission (obj = this.menuItem, hh) {
-      let { meta } = obj
-      return !meta.permission || (meta.permission && meta.permission.includes(this.access))
+      // let { meta } = obj
+      // return !meta.permission || (meta.permission && meta.permission.includes(this.access))
+      return true
     }
   }
 }

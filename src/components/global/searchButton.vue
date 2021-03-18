@@ -9,13 +9,13 @@ export default {
     setTitle (icon) {
       switch (icon) {
         case 'icon-clear':
-          return this.$t('common.reset')
+          return '重置'
         case 'icon-search':
-          return this.$t('common.search')
+          return '查询'
         case 'icon-hs_close':
-          return this.$t('common.closeHsearch')
+          return '普通查询'
         case 'icon-hs_open':
-          return this.$t('common.openHsearch')
+          return '高级查询'
         default:
           return ''
       }
