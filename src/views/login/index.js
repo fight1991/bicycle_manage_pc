@@ -1,17 +1,11 @@
-export default [{
-  path: '/login',
-  name: 'login',
-  meta: {
-    title: 'sign in',
-    requiresAuth: false
-  },
-  component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue')
-}, {
-  path: '/signUp',
-  name: 'signUp',
-  meta: {
-    title: 'sign up',
-    requiresAuth: false
-  },
-  component: () => import(/* webpackChunkName: "signUp" */ '@/views/login/signUp')
-}]
+export default [
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ './signIn'),
+    meta: {
+      title: '登录',
+      requiresAuth: false
+    }
+  }
+]

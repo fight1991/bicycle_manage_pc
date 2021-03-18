@@ -5,12 +5,12 @@
       <div class="pull-icon" @click="toggleMenu"><i :class="{'el-icon-s-unfold':$store.state.collapse,'el-icon-s-fold':!$store.state.collapse}"></i></div>
       <div class="bread-navigator">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item>{{$t('navBar.home')}}</el-breadcrumb-item>
-          <el-breadcrumb-item v-for="item in routerArray" :key="item">{{$t('navBar.' + item)}}</el-breadcrumb-item>
+          <el-breadcrumb-item>首页</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="item in routerArray" :key="item">{{item}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- 刷新按钮 -->
-      <div v-show="$route.name!='tab-index'" class="refresh-button" @click="refreshCurrentPage" :title="$t('common.refresh')">
+      <div v-show="$route.name!='tab-index'" class="refresh-button" @click="refreshCurrentPage" title="刷新当前页面">
         <i class="el-icon-refresh-right"></i>
       </div>
     </div>
@@ -36,8 +36,8 @@
           <div class="user-logo"><img :src="userLogo" alt=""></div>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="user">{{$t('user.center')}}</el-dropdown-item>
-          <el-dropdown-item command="logout" divided>{{$t('login.goOut')}}</el-dropdown-item>
+          <el-dropdown-item command="user">个人中心</el-dropdown-item>
+          <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -79,7 +79,6 @@ export default {
       tabModule: false,
       primaryColor: '#409EFF',
       setDrawerShow: false,
-      isFullScreen: false,
       userLogo: require('@/assets/user-logo.png')
     }
   },
@@ -96,23 +95,11 @@ export default {
     }
   },
   created () {
-    window.addEventListener('resize', () => {
-      !document.fullscreen && (this.isFullScreen = false)
-    })
+
   },
   methods: {
     refreshCurrentPage () {
       this.$store.dispatch('refreshTab', this.$store.getters.currentTabInfo)
-    },
-    // 切换全屏
-    screenClick (type) {
-      this.isFullScreen = type === 'enter'
-      if (document.fullscreenElement) {
-        document.exitFullscreen()
-      } else {
-        document.documentElement.requestFullscreen() // 文档流全屏
-        // document.documentElement.requestFullscreen.call('dom') // 是dom元素全屏
-      }
     },
     toggleMenu () {
       this.$store.commit('changeCollapse')
@@ -146,7 +133,7 @@ export default {
     // 注销登录
     async logout () {
       let res = await this.$openConfirm({
-        content: this.$t('login.tips3')
+        content: '您确定要退出登录吗?'
       })
       if (!res) return
       let { result } = await this.$post({

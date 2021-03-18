@@ -5,7 +5,7 @@
         <div class="aside-box">
           <div class="logo">
             <img :src="logoSrc">
-            <span v-show="!$store.state.collapse">{{$t('monitor')}}</span>
+            <span v-show="!$store.state.collapse">后台管理系统</span>
           </div>
           <layout-aside @getMoveDistance="getMoveDistance"></layout-aside>
         </div>

@@ -4,7 +4,7 @@ import businessHandle from './businessHandle'
 import system from './system'
 
 export default [
-  Home,
+  home,
   dataSearch,
   businessHandle,
   system

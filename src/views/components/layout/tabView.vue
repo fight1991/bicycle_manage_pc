@@ -10,24 +10,14 @@
 
           <!-- 页签区域开始 -->
           <span slot="label" v-show="index==0"><i class="iconfont icon-home"></i></span>
-          <span slot="label" v-show="index > 0">{{$t('navBar.'+item.title)}}</span>
-          <!-- 页签切换太快出现popper位置错乱问题 -->
-          <!-- <el-popover
-            popper-class="tab-popper"
-            width="100%"
-            slot="label"
-            placement="bottom"
-            trigger="hover">
-            <span slot="reference" v-show="index > 0">{{$t('navBar.'+item.title)}}</span>
-            <div class="tab-refresh" @click="reload(item)"><i class="el-icon-refresh"></i>{{$t('common.refresh')}}</div>
-          </el-popover> -->
+          <span slot="label" v-show="index > 0">{{item.title}}</span>
           <!-- 页签区域结束 -->
 
           <!-- 组件内容区域开始 -->
           <el-scrollbar wrap-class="tab-scrollbar-wrapper">
             <div class="tab-content" v-if="item.isShow">
               <component :is="item.components[item.components.length-1]"></component>
-              <div v-show="index>0" class="copy-right" v-text="$store.state.rightsTxt + $t('login.allRight')"></div>
+              <div v-show="index>0" class="copy-right">版权所有</div>
             </div>
           </el-scrollbar>
           <!-- 组件内容区域结束 -->
@@ -38,11 +28,11 @@
     <div class="tab-right">
       <el-dropdown trigger="click" @command="closeTab">
         <span class="el-dropdown-link">
-          <i class="iconfont icon-caidan" :title="$t('common.tabOp')"></i>
+          <i class="iconfont icon-caidan" title="操作页签"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item :command="1">{{$t('common.closeAll')}}</el-dropdown-item>
-          <el-dropdown-item :command="2">{{$t('common.closeOther')}}</el-dropdown-item>
+          <el-dropdown-item :command="1">关闭所有页签</el-dropdown-item>
+          <el-dropdown-item :command="2">关闭其它页签</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

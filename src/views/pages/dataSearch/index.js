@@ -23,7 +23,7 @@ export default {
       meta: {
         permission: [1, 2, 3, 255],
         title: '详情',
-        component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/plant/plantDetail')
+        component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/listDemo')
       }
     }
   ]
