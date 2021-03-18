@@ -21,6 +21,7 @@ export default {
     firmware: 'Oprogramowanie',
     inverUp: 'Promocja falownika',
     moduleUp: 'Promocja modułu',
+    batteryUp: 'Promocja bateria',
     data: 'Raport danych ',
     alarmM: 'Zgłoś błąd',
     alarmTime: 'Alarm w czasie rzeczywistym',
@@ -30,6 +31,7 @@ export default {
     remoteUp: 'Zdalna aktualizacja',
     infoSys: 'Zarządzanie wiadomościami',
     relog: 'System logowania',
+    battLog: 'Dziennik baterii',
     userCenter: 'Centrum osobiste'
   },
   join: {
@@ -37,6 +39,7 @@ export default {
     endUser: 'Użytkownik',
     installer: 'Instalator',
     agent: 'Agent',
+    admin: 'Administrator',
     create: 'Stwórz',
     join: 'Przystąp',
     joinTips: 'Dołącz pomyślnie, zaloguj się ponownie!',
@@ -64,8 +67,10 @@ export default {
   common: {
     serNum: 'Numer',
     dateRange: 'Wybierz zakres dat',
-    showNum: 'Całkowita liczba nagrań',
-    totalNum: 'Razem strona',
+    dateTime: 'Wybierz datę i godzinę',
+    showNum: 'Wyświetlono',
+    totalNum: ', Suma wierszy',
+    rows: '',
     signIn: 'Zaloguj sie',
     signUp: 'zarejestrowany',
     require: 'Wymagany',
@@ -242,13 +247,13 @@ export default {
     plantN: 'Zwykła elektrownia',
     plantA: 'Nienormalna elektrownia',
     genSta: 'Statystyka wytwarzania energii',
-    genTod: 'Dzisiejsza produkcja (kW · h)',
+    genTod: 'Dzisiejsza produkcja(kW·h)',
     earnTod: 'Statystyka wytwarzania energii',
-    genMon: 'Miesięczna produkcja  (kW · h)',
+    genMon: 'Miesięczna produkcja(kW·h)',
     earnMon: 'Miesięczne zarobki',
     genYear: 'Roczna generacja',
     earnYear: 'Roczne zarobki',
-    genTot: 'Całkowita produkcja (kW · h)',
+    genTot: 'Całkowita produkcja(kW·h)',
     earnTot: 'Całkowity przychód',
     baStatus: 'Stan baterii',
     plantsList: 'Lista elektrowni',
@@ -411,6 +416,23 @@ export default {
     instCap: 'Pojemność znamionowa',
     shutdown: 'Zdalne wyłączanie',
     boot: 'Zdalny rozruch'
+  },
+  relog: {
+    level: 'Poziom dziennika',
+    encoding: 'Kodowanie',
+    export: 'Eksport',
+    total: 'Całkowita linia',
+    line: ''
+  },
+  battRemote: {
+    bmsMasterSN: 'Bateria master SN',
+    bmsMasterVersion: 'Wersja główna baterii',
+    bmsSlaveSN: 'Bateria podrzędna SN',
+    bmsSlaveVersion: 'Wersja podrzędna baterii',
+    batInfo: 'Informacje o baterii',
+    batType: 'Typ Baterii',
+    status: 'Status',
+    batSN: 'Bateria SN'
   },
   week: {
     day0: 'Poniedziałek',

@@ -1,29 +1,11 @@
-import Home from './home'
-import DataView from './dataView'
-import Plant from './plant'
-import Device from './device'
-import Group from './group'
-import Version from './version'
-import DataReport from './dataReport'
-import Alarm from './alarm'
-// import Factory from './factory'
-// import AfterSale from './afterSale'
-// import Upgrade from './upgrade'
-// import Message from './message'
-// import Relog from './relog'
+import home from './home'
+import dataSearch from './dataSearch'
+import businessHandle from './businessHandle'
+import system from './system'
 
 export default [
   Home,
-  DataView,
-  Plant,
-  Device,
-  Version,
-  Group,
-  DataReport,
-  Alarm
-  // Factory,
-  // AfterSale,
-  // Upgrade,
-  // Message,
-  // Relog
+  dataSearch,
+  businessHandle,
+  system
 ]

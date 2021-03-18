@@ -5,7 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin') // Gzip压缩
 const FileManagerPlugin = require('filemanager-webpack-plugin') // 将build后的文件压缩
 const webpackConfig = {
   publicPath: '/', // 应用部署路径
-  outputDir: process.env.VUE_APP_VERSION === 'abroad' ? 'dist/欧服' : 'dist/国服', // 生产环境构建目录
+  outputDir: process.env.NODE_ENV === 'production' ? 'dist/生产' : 'dist/测试', // 生产环境构建目录
   assetsDir: 'assets', // 放置生成的静态资源
   lintOnSave: process.env.NODE_ENV !== 'production', // 生产环境不启用lint
   runtimeCompiler: false, // 是否在 Vue 组件中使用 template 选项
@@ -131,12 +131,12 @@ if (process.env.NODE_ENV === 'production') {
   let tempFileManager = new FileManagerPlugin({
     onEnd: {
       delete: [ // 首先需要删除项目根目录下的dist.zip
-        './dist/国服.zip',
-        './dist/欧服.zip'
+        './dist/生产.zip',
+        './dist/测试.zip'
       ],
       archive: [ // 然后我们选择dist文件夹将之打包成dist.zip并放在根目录
-        { source: './dist/国服', destination: './dist/国服.zip' },
-        { source: './dist/欧服', destination: './dist/欧服.zip' }
+        { source: './dist/生产', destination: './dist/生产.zip' },
+        { source: './dist/测试', destination: './dist/测试.zip' }
       ]
     }
   })

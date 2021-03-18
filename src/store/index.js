@@ -1,6 +1,4 @@
 import Vuex from 'vuex'
-const language = process.env.VUE_APP_VERSION === 'abroad' ? 'en' : 'zh_CN'
-const domainName = process.env.NODE_ENV === 'development' ? process.env.VUE_APP_API : location.origin
 // 一次性导入所有modules
 const modulesFiles = require.context('./modules', true, /\.js$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -12,25 +10,19 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {})
 
 const state = {
-  rightsTxt: `Copyright ©${new Date().getFullYear()} `,
-  version: process.env.VUE_APP_VERSION, // app版本 国外版, 国内版
   tableH: 330, // 表格高度
-  successCode: 0, // 业务成功状态码
+  successCode: '0000', // 业务成功状态码
   isFirst: true, // 是否第一次进入系统
-  hasErrorInfo: false, // 是否已存储错误列表
-  lang: language, // 语言
   collapse: false, // 是否折叠
   loadingNum: 0, // 全局loading数量计数, 防止一个请求没有回来被另一个请求关掉了
   tabView: true, // 是否开启页签模式
   isGlobalLoading: false, // 是否进入后台管理(business)页面, 是的话设置适当的loading范围
-  domainName, // 根据访问地址动态得到域名
   pagination: {
     pageSize: 10,
     currentPage: 1,
     total: 0
   },
   access: -1, // 0 游客， 1 终端用户 ，2 安装商 3 代理商 ，255 厂商
-  username: '',
   userInfo: {
     user: '', // 当前登录的用户名
     name: '',
@@ -47,6 +39,9 @@ const state = {
 const getters = {
   isLoading (state) {
     return state.loadingNum > 0
+  },
+  username (state) {
+    return state.userInfo.user
   }
 }
 const mutations = {
