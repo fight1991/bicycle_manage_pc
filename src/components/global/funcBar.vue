@@ -1,10 +1,14 @@
 <template>
-  <div class="function-container">
-    <slot></slot>
-  </div>
+  <card-box>
+    <div class="function-container">
+      <slot></slot>
+    </div>
+  </card-box>
 </template>
 <script>
+import cardBox from './cardBox.vue'
 export default {
+  components: { cardBox },
   data () {
     return {
 
@@ -13,8 +17,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-  .function-container {
-    padding: 15px 10px 10px;
-    background-color: #fff;
-  }
+
 </style>

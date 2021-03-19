@@ -1,9 +1,11 @@
 <template>
-  <div class="search-container">
+  <card-box>
     <transition name="list-complete">
-      <slot></slot>
+      <div class="search-container">
+        <slot></slot>
+      </div>
     </transition>
-  </div>
+  </card-box>
 </template>
 <script>
 export default {
@@ -23,9 +25,5 @@ export default {
 .list-complete-leave-active {
   position: absolute;
 }
-.search-container {
-  padding: 15px 10px 10px;
-  background-color: #fff;
-  margin-bottom: 15px;
-}
+
 </style>

@@ -4,19 +4,19 @@
     <search-bar>
       <el-form size="mini" label-width="0px" :model="searchForm">
         <el-row :gutter="15">
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item>
               <el-input v-model="searchForm.version" placeholder="版本号"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item>
               <el-select style="width:100%" v-model="searchForm.type" placeholder="choose">
                 <el-option v-for="item in typeList" :label="item.label" :value="item.status" :key="item.status"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item>
               <el-select style="width:100%" v-model="searchForm.status" placeholder="type">
                 <el-option v-for="(item,index) in statusList" :label="item" :value="item" :key="item + index"></el-option>
@@ -24,8 +24,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="6" align="left">
-            <search-button type="warning" icon="icon-clear" @click="reset"></search-button>
-            <search-button type="success" icon="icon-search" @click="search"></search-button>
+            <el-button size="mini" @click="reset">重置</el-button>
+            <el-button size="mini" type="primary" @click="search">查询</el-button>
           </el-col>
         </el-row>
       </el-form>
