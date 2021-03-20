@@ -40,7 +40,7 @@
   color: #4c4c4c;
 }
 .sys-main { // 页面主要样式
-  margin: 5px 10px 0 5px;
+  margin: 0 10px 0;
   // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
   .el-card:not(.no-bottom) {
@@ -448,15 +448,6 @@
         overflow: hidden;
       }
     }
-    .el-tabs__content {
-      flex: 1;
-      .el-tab-pane {
-        height: 100%;
-        box-sizing: border-box;
-        padding: 5px 0px 5px 5px;
-        // background-color: #fff;
-      }
-    }
   }
   &>.el-tabs--card>.el-tabs__header {
     .el-tabs__item {
@@ -477,6 +468,8 @@
     .el-tabs__nav {
       border-radius: 0;
       border-top: none;
+      display: flex;
+      align-items: center;
     }
   }
   .tab-scrollbar-wrapper {

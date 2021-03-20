@@ -94,7 +94,7 @@ export default {
 .sidebar-container {
   // flex: 1;
   position: relative;
-  height: calc(100% - 50px);
+  height: calc(100% - 70px);
   .sidebar-drag {
     position: absolute;
     right: 0;

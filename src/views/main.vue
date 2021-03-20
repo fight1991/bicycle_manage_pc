@@ -11,14 +11,13 @@
         </div>
       </el-aside>
       <el-container class="main-container">
-        <div class="main-inner">
-          <el-header class="main-header" height="40px">
-            <layout-header></layout-header>
-          </el-header>
-          <el-main class="main-tab">
-            <tab-view></tab-view>
-          </el-main>
-        </div>
+        <el-header class="main-header" height="70px">
+          <layout-header></layout-header>
+          <layout-tab></layout-tab>
+        </el-header>
+        <el-main class="main-tab">
+          <tab-view></tab-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -26,6 +25,7 @@
 
 <script>
 import layoutHeader from '@/views/components/layout/header'
+import layoutTab from '@/views/components/layout/myTab'
 import layoutAside from '@/views/components/layout/sliderBar/aside'
 import tabView from '@/views/components/layout/tabView'
 export default {
@@ -33,7 +33,8 @@ export default {
   components: {
     layoutHeader,
     layoutAside,
-    tabView
+    tabView,
+    layoutTab
   },
   data () {
     return {
@@ -91,7 +92,8 @@ export default {
   position: relative;
   z-index: 3;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .09);
-  padding: 0 10px;
+  padding: 0;
+  margin-bottom: 10px;
 }
 .aside-box {
   display: flex;
@@ -100,17 +102,18 @@ export default {
   background-color: @sys-aside-bg;
 }
 .main-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  .main-inner {
-    min-width: 600px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+  // overflow-x: auto;
+  // overflow-y: hidden;
+  // .main-inner {
+  //   min-width: 600px;
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  // }
 }
 .main-tab {
   padding: 0;
+  overflow: hidden;
 }
 .main-aside {
   border-right: 1px solid #ccc;

@@ -153,10 +153,12 @@ export default {
 <style lang="less" scoped>
 .head-container {
   width: 100%;
-  height: 100%;
+  height: 40px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #E4E7ED;
 }
 .system-setBox {
   padding: 30px 10px;
