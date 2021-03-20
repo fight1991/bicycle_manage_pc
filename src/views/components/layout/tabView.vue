@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%" :class="{'fullScreen':isFullScreen}" ref="fullScreen" >
+  <div>
     <div class="tab-container" v-loading="currentTabInfo.loadingNum > 0">
       <el-tabs v-model="$store.state.tab.currentTab" type="card" @tab-remove="removeTab" @tab-click="tabClick">
         <template v-for="(item, index) in tabList">
@@ -49,7 +49,7 @@ export default {
   name: 'tab-view',
   data () {
     return {
-      isFullScreen: false
+
     }
   },
   provide () {
@@ -124,9 +124,6 @@ export default {
 .el-icon-s-home {
   font-size: 20px;
   line-height: 30px;
-}
-.fullScreen {
-  background-color: #f5f5f5;
 }
 .tab-container {
   position: relative;

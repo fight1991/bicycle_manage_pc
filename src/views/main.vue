@@ -105,6 +105,8 @@ export default {
   .main-inner {
     min-width: 600px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }
 .main-tab {
