@@ -18,6 +18,9 @@
         <el-main class="main-tab">
           <tab-view></tab-view>
         </el-main>
+        <el-footer height="auto">
+          <div class="copyright">Copyright ©2021 航天吉光科技有限公司,版权所有</div>
+        </el-footer>
       </el-container>
     </el-container>
   </div>
@@ -117,5 +120,11 @@ export default {
 }
 .main-aside {
   border-right: 1px solid #ccc;
+}
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  color: @sys-input-placeholder;
+  padding-bottom: 5px;
 }
 </style>
