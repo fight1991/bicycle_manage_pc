@@ -14,7 +14,7 @@ export default {
       meta: {
         permission: [2, 3, 255],
         title: '备案审核',
-        component: () => import(/* webpackChunkName: "bus-business-record" */ '@/views/pages/listDemo')
+        component: () => import(/* webpackChunkName: "bus-business-record" */ './listDemo1')
       }
     }, {
       path: '/bus/business/change',
@@ -22,7 +22,7 @@ export default {
       meta: {
         permission: [1, 2, 3, 255],
         title: '备案人变更',
-        component: () => import(/* webpackChunkName: "bus-business-change" */ '@/views/pages/listDemo')
+        component: () => import(/* webpackChunkName: "bus-business-change" */ './listDemo2')
       }
     }, {
       path: '/bus/business/scrap',

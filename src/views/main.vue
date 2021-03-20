@@ -11,12 +11,14 @@
         </div>
       </el-aside>
       <el-container class="main-container">
-        <el-header class="main-header" height="40px">
-          <layout-header></layout-header>
-        </el-header>
-        <el-main class="main-tab">
-          <tab-view></tab-view>
-        </el-main>
+        <div class="main-inner">
+          <el-header class="main-header" height="40px">
+            <layout-header></layout-header>
+          </el-header>
+          <el-main class="main-tab">
+            <tab-view></tab-view>
+          </el-main>
+        </div>
       </el-container>
     </el-container>
   </div>
@@ -98,7 +100,12 @@ export default {
   background-color: @sys-aside-bg;
 }
 .main-container {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  .main-inner {
+    min-width: 600px;
+    width: 100%;
+  }
 }
 .main-tab {
   padding: 0;

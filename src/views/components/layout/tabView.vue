@@ -1,42 +1,46 @@
 <template>
-<div style="height:100%" :class="{'fullScreen':isFullScreen}" ref="fullScreen" >
-  <div class="tab-container" v-loading="currentTabInfo.loadingNum > 0">
-    <el-tabs v-model="$store.state.tab.currentTab" type="card" @tab-remove="removeTab" @tab-click="tabClick">
-      <template v-for="(item, index) in tabList">
-        <el-tab-pane
-          :closable="index > 0"
-          :key="item.name + item.tabId"
-          :name="item.name">
+  <div style="height:100%" :class="{'fullScreen':isFullScreen}" ref="fullScreen" >
+    <div class="tab-container" v-loading="currentTabInfo.loadingNum > 0">
+      <el-tabs v-model="$store.state.tab.currentTab" type="card" @tab-remove="removeTab" @tab-click="tabClick">
+        <template v-for="(item, index) in tabList">
+          <el-tab-pane
+            :closable="index > 0"
+            :key="item.name + item.tabId"
+            :name="item.name">
 
-          <!-- 页签区域开始 -->
-          <span slot="label" v-show="index==0"><i class="iconfont icon-home"></i></span>
-          <span slot="label" v-show="index > 0">{{item.title}}</span>
-          <!-- 页签区域结束 -->
-
-          <!-- 组件内容区域开始 -->
+            <!-- 页签区域开始 -->
+            <span slot="label" v-show="index==0"><i class="iconfont icon-home"></i></span>
+            <span slot="label" v-show="index > 0">{{item.title}}</span>
+            <!-- 页签区域结束 -->
+          </el-tab-pane>
+        </template>
+      </el-tabs>
+      <div class="tab-right">
+        <el-dropdown trigger="click" @command="closeTab">
+          <span class="el-dropdown-link">
+            <i class="iconfont icon-caidan" title="操作页签"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item :command="1">关闭所有页签</el-dropdown-item>
+            <el-dropdown-item :command="2">关闭其它页签</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </div>
+    <!-- 组件内容区域开始 -->
+    <div class="tab-content-box">
+      <template v-for="item in tabList">
+        <div class="content-item" v-show="item.name === currentTab" :key="item.name + item.tabId">
           <el-scrollbar wrap-class="tab-scrollbar-wrapper">
             <div class="tab-content" v-if="item.isShow">
               <component :is="item.components[item.components.length-1]"></component>
-              <div v-show="index>0" class="copy-right">版权所有</div>
+              <!-- <div v-show="index>0" class="copy-right">版权所有</div> -->
             </div>
           </el-scrollbar>
-          <!-- 组件内容区域结束 -->
-
-        </el-tab-pane>
+        </div>
       </template>
-    </el-tabs>
-    <div class="tab-right">
-      <el-dropdown trigger="click" @command="closeTab">
-        <span class="el-dropdown-link">
-          <i class="iconfont icon-caidan" title="操作页签"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item :command="1">关闭所有页签</el-dropdown-item>
-          <el-dropdown-item :command="2">关闭其它页签</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <!-- 组件内容区域结束 -->
     </div>
-  </div>
   </div>
 </template>
 <script>

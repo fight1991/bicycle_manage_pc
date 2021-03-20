@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       searchForm: {
-        version: '',
+        version: '备案人变更',
         type: '',
         status: ''
       },
@@ -92,6 +92,9 @@ export default {
         }
       ]
     }
+  },
+  created () {
+    console.log('变更')
   },
   methods: {
     reset () {

@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       searchForm: {
-        version: '',
+        version: '备案审核',
         type: '',
         status: ''
       },
@@ -92,6 +92,9 @@ export default {
         }
       ]
     }
+  },
+  created () {
+    console.log('备案')
   },
   methods: {
     reset () {
