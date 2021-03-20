@@ -1,7 +1,7 @@
 export default {
   icon: 'icon-power',
-  path: '/bus/business',
-  name: 'bus-business',
+  path: '/bus/businessH',
+  name: 'bus-businessH',
   // hidden: true,
   meta: {
     permission: [1, 2, 3, 255],
@@ -9,28 +9,28 @@ export default {
   },
   children: [
     {
-      path: '/bus/business/record',
-      name: 'bus-data-record',
+      path: '/bus/businessH/record',
+      name: 'bus-businessH-record',
       meta: {
         permission: [2, 3, 255],
         title: '备案审核',
-        component: () => import(/* webpackChunkName: "bus-business-record" */ './listDemo1')
+        component: () => import(/* webpackChunkName: "bus-businessH-record" */ './listDemo1')
       }
     }, {
-      path: '/bus/business/change',
-      name: 'bus-business-change',
+      path: '/bus/businessH/change',
+      name: 'bus-businessH-change',
       meta: {
         permission: [1, 2, 3, 255],
         title: '备案人变更',
-        component: () => import(/* webpackChunkName: "bus-business-change" */ './listDemo2')
+        component: () => import(/* webpackChunkName: "bus-businessH-change" */ './listDemo2')
       }
     }, {
-      path: '/bus/business/scrap',
-      name: 'bus-business-scrap',
+      path: '/bus/businessH/scrap',
+      name: 'bus-businessH-scrap',
       meta: {
         permission: [1, 2, 3, 255],
         title: '报废审核',
-        component: () => import(/* webpackChunkName: "bus-business-scrap" */ '@/views/pages/listDemo')
+        component: () => import(/* webpackChunkName: "bus-businessH-scrap" */ '@/views/pages/listDemo')
       }
     }
   ]

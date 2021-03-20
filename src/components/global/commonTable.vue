@@ -135,7 +135,7 @@ export default {
     border: {
       type: Boolean,
       default: () => {
-        return true
+        return false
       }
     },
     select: {

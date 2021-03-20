@@ -3,7 +3,7 @@
     <!-- 查询区域 -->
     <search-bar>
       <el-form size="mini" label-width="70px" label-position="left" :model="searchForm">
-        <el-row :gutter="15">
+        <el-row :gutter="30">
           <el-col :span="8">
             <el-form-item label="姓名">
               <el-input v-model="searchForm.version" placeholder="请输入姓名"></el-input>
@@ -16,12 +16,10 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="身份证号">
-              <el-select style="width:100%" v-model="searchForm.status" placeholder="type">
-                <el-option v-for="(item,index) in statusList" :label="item" :value="item" :key="item + index"></el-option>
-              </el-select>
+              <el-input v-model="searchForm.version" placeholder="请输入身份证号"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6" align="left">
+          <el-col :span="24" align="right">
             <el-button size="mini" @click="reset">重置</el-button>
             <el-button size="mini" type="primary" @click="search">查询</el-button>
           </el-col>
@@ -30,12 +28,15 @@
     </search-bar>
     <!-- 表格区域 -->
     <func-bar>
-      <el-row class="table-btn" type="flex" justify="end">
+      <el-row class="table-btn" type="flex" justify="start">
         <el-button size="mini" icon="iconfont icon-import">导入</el-button>
         <el-button size="mini" icon="el-icon-delete">批量发布</el-button>
         <el-button size="mini" icon="el-icon-delete">批量删除</el-button>
       </el-row>
-      <common-table :tableHeadData="tableHead" :select.sync="selection" :selectBox="true" :tableList="resultList">
+      <common-table :tableHeadData="tableHead" :tableList="resultList">
+        <template #slot="op">
+          删除
+        </template>
       </common-table>
       <div class="page-list">
         <page-box :pagination.sync="pagination" @change="getList"></page-box>
@@ -54,7 +55,11 @@ export default {
       },
       typeList: [],
       statusList: [],
-      resultList: [],
+      resultList: [
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' }
+      ],
       selection: [],
       pagination: {
         pageSize: 10,
@@ -63,30 +68,30 @@ export default {
       },
       tableHead: [
         {
-          label: '设备类型',
+          label: '姓名',
           prop: 'type',
           checked: true
         },
         {
-          label: '版本号',
+          label: '手机号',
           prop: 'type',
           checked: true
         },
         {
-          label: '版本类型',
+          label: '身份证号',
           prop: 'type',
           checked: true
         },
         {
-          label: '审核状态',
+          label: '创建时间',
           prop: 'type',
           checked: true
         },
         {
-          label: '上传时间',
-          prop: 'time',
+          label: '操作',
+          prop: 'op',
           checked: true,
-          slotName: 'time'
+          slotName: 'op'
         }
       ]
     }
