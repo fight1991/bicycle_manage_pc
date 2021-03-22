@@ -20,6 +20,12 @@
 //     width: 33.33333%;
 //   }
 // }
+.view-port {
+  height: calc(100vh - 110px);
+}
+.bg-c {
+  background-color: #fff;
+}
 .el-input__inner {
   border-radius: 2px;
   padding: 0 8px;
@@ -150,22 +156,6 @@
         cursor: pointer;
         color: @sys-main-header;
       }
-    }
-  }
-  .title {
-    position: relative;
-    text-indent: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    &.border-line::after {
-      content: '';
-      height: 12px;
-      width: 2px;
-      background-color: @sys-main-header;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translate(0,-50%);
     }
   }
   .el-button.is-disabled,
