@@ -4,6 +4,7 @@ import SearchBar from './global/searchBar'
 import FuncBar from './global/funcBar'
 import SeachButton from './global/searchButton'
 import CardBox from './global/cardBox'
+import CellBtn from './global/cellBtn'
 
 /**
  * 以懒加载的方式加载如下组件
@@ -21,5 +22,6 @@ export default {
     Vue.component('common-table', CommonTable)
     Vue.component('search-button', SeachButton)
     Vue.component('card-box', CardBox)
+    Vue.component('cell-btn', CellBtn)
   }
 }

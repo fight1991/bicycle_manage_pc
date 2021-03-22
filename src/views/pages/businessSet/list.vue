@@ -29,12 +29,10 @@
     <!-- 表格区域 -->
     <func-bar>
       <el-row class="table-btn" type="flex" justify="start">
-        <el-button size="mini" icon="iconfont icon-import">导入</el-button>
-        <el-button size="mini" icon="el-icon-delete">批量发布</el-button>
-        <el-button size="mini" icon="el-icon-delete">批量删除</el-button>
+        <el-button size="mini" icon="iconfont icon-import">添加</el-button>
       </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
-        <template #slot="op">
+        <template v-slot:op="{row}">
           删除
         </template>
       </common-table>
@@ -89,7 +87,6 @@ export default {
         },
         {
           label: '操作',
-          prop: 'op',
           checked: true,
           slotName: 'op'
         }

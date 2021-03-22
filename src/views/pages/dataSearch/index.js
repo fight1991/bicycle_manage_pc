@@ -14,7 +14,7 @@ export default {
       meta: {
         permission: [2, 3, 255],
         title: '电动自行车查询',
-        component: () => import(/* webpackChunkName: "bus-data-bicycle" */ '@/views/pages/listDemo')
+        component: () => import(/* webpackChunkName: "bus-data-bicycle" */ '@/views/pages/dataSearch/list')
       }
     }, {
       path: '/bus/data/detail',
@@ -23,7 +23,7 @@ export default {
       meta: {
         permission: [1, 2, 3, 255],
         title: '详情',
-        component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/listDemo')
+        component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/dataSearch/detail')
       }
     }
   ]

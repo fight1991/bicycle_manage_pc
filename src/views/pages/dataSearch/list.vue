@@ -5,18 +5,25 @@
       <el-form size="mini" label-width="70px" label-position="left" :model="searchForm">
         <el-row :gutter="30">
           <el-col :span="8">
-            <el-form-item label="姓名">
-              <el-input v-model="searchForm.version" placeholder="请输入姓名"></el-input>
+            <el-form-item label="车牌号">
+              <el-input v-model="searchForm.version" placeholder="请输入车牌号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="手机号">
-              <el-input v-model="searchForm.version" placeholder="请输入手机号"></el-input>
+            <el-form-item label="整车编号">
+              <el-input v-model="searchForm.version" placeholder="请输入整车编号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="身份证号">
-              <el-input v-model="searchForm.version" placeholder="请输入身份证号"></el-input>
+            <el-form-item label="创建时间">
+              <el-date-picker
+                clearable
+                style="width:100%"
+                v-model="times"
+                value-format="timestamp"
+                :picker-options="pickerOptions"
+                type="daterange">
+              </el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="24" align="right">
@@ -32,8 +39,8 @@
         <el-button size="mini" icon="iconfont icon-import">添加</el-button>
       </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
-        <template v-slot:op="{row}">
-          删除
+        <template #op="{row}">
+          <cell-btn @click.native="goToDetail">详情</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
@@ -51,6 +58,12 @@ export default {
         type: '',
         status: ''
       },
+      times: [],
+      pickerOptions: {
+        disabledDate (time) {
+          return time.getTime() > Date.now()
+        }
+      },
       typeList: [],
       statusList: [],
       resultList: [
@@ -66,34 +79,45 @@ export default {
       },
       tableHead: [
         {
-          label: '姓名',
+          label: '车牌号',
           prop: 'type',
           checked: true
         },
         {
-          label: '手机号',
+          label: '车辆品牌',
           prop: 'type',
           checked: true
         },
         {
-          label: '身份证号',
+          label: '整车编号',
           prop: 'type',
           checked: true
         },
         {
-          label: '创建时间',
+          label: '车主名',
+          prop: 'type',
+          checked: true
+        },
+        {
+          label: '登记时间',
           prop: 'type',
           checked: true
         },
         {
           label: '操作',
           checked: true,
-          slotName: 'op'
+          slotName: 'op',
+          fixed: 'right'
         }
       ]
     }
   },
   methods: {
+    goToDetail () {
+      this.$tab.append({
+        name: 'bus-data-detail'
+      })
+    },
     reset () {
       this.searchForm = {
         version: '',
