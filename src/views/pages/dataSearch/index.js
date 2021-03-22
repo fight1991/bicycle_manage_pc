@@ -22,7 +22,7 @@ export default {
       hidden: true,
       meta: {
         permission: [1, 2, 3, 255],
-        title: '详情',
+        title: '电动自行车详情',
         component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/dataSearch/detail')
       }
     }
