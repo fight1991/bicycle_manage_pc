@@ -1,7 +1,5 @@
 import router from '@/router'
-import store from '@/store'
 import storage from '@/util/storage'
-// import i18n from '@/i18n'
 import { Message } from 'element-ui'
 
 /**
@@ -15,7 +13,6 @@ export default {
     // ajax异步请求
     config.headers['X-Requested-With'] = 'XMLHttpRequest'
     config.headers['token'] = storage.getStorage('token')
-    config.headers['lang'] = store.state.lang
     return config
   },
   // 请求发送失败之前
@@ -24,21 +21,16 @@ export default {
   },
   // 响应成功
   onResponseResolve: function (response) {
-    // 业务报错
-    if (response.data.errno !== store.state.successCode) {
-      let langKey = store.state.lang
-      let errTxt = 'Unknow error'
-      if (store.state.errorInfo[langKey]) {
-        errTxt = store.state.errorInfo[langKey][response.data.errno] || ''
-      }
+    let { code, message } = response.data
+    if (code !== '0000') {
       // token不合法的报错
-      if ([41808, 41809, 41810].includes(response.data.errno)) {
+      if (code === '0002') {
         // message只提示一次
         if (tips) return response.data
         tips = true
         Message({
           type: 'error',
-          message: errTxt,
+          message,
           duration: 2000,
           onClose: () => {
             tips = false
@@ -54,9 +46,9 @@ export default {
           path: '/login',
           query: sysParams
         })
-      } else { // 其他业务报错
+      } else { // 其他业务报错9999, 0003
         if (tips) return response.data
-        Message.error(response.data.errno + '-' + errTxt)
+        Message.error(message)
       }
     }
     return response.data

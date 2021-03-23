@@ -57,7 +57,7 @@ export class CommonFetch {
       let ajax = new SetInstance()[this.methodType]
       let res = await ajax(url, data)
       isLoad && closeLoading(store, tabId, loadingStatus)
-      if (res.errno === store.state.successCode) {
+      if (res.errno === '0000') {
         checkParams && storage.setStorage(checkParams, res.result)
         return { result: res.result || true }
       }

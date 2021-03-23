@@ -21,7 +21,7 @@
                 style="width:100%"
                 v-model="times"
                 value-format="timestamp"
-                :picker-options="pickerOptions"
+                :picker-options="pickerTimeOptions"
                 type="daterange">
               </el-date-picker>
             </el-form-item>

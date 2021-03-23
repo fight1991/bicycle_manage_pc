@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      pickerOptions: {
+      pickerTimeOptions: {
         disabledDate (time) {
           return time.getTime() > Date.now()
         }
