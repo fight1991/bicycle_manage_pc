@@ -1,5 +1,5 @@
 <template>
-  <section class="sys-main view-port-fix">
+  <section class="sys-main view-port-min">
     <div class="full-screen">
       <!-- 查询区域 -->
       <search-bar>
