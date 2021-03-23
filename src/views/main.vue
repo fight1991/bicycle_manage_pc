@@ -5,7 +5,7 @@
         <div class="aside-box">
           <div class="logo">
             <img :src="logoSrc">
-            <span v-show="!$store.state.collapse">后台管理系统</span>
+            <span v-show="!$store.state.collapse">电动自行车后台管理系统</span>
           </div>
           <layout-aside :startP="startP" :endP="endP" @getMoveDistance="getMoveDistance"></layout-aside>
         </div>
@@ -82,7 +82,7 @@ export default {
   }
   span {
     color: #f5f5f5;
-    margin-left: 15px;
+    // margin-left: 15px;
     font-size: 16px;
   }
 }

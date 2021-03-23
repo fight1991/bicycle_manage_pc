@@ -14,7 +14,7 @@ export default {
       meta: {
         permission: [2, 3, 255],
         title: '安装员配置',
-        component: () => import(/* webpackChunkName: "bus-businessD-installer" */ './list')
+        component: () => import(/* webpackChunkName: "bus-businessD-installer" */ './installerList')
       }
     }
   ]
