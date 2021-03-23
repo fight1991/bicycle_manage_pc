@@ -35,12 +35,9 @@
     </search-bar>
     <!-- 表格区域 -->
     <func-bar>
-      <el-row class="table-btn" type="flex" justify="start">
-        <el-button size="mini" icon="iconfont icon-import">添加</el-button>
-      </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
         <template #op="{row}">
-          <cell-btn @click.native="goToDetail">详情</cell-btn>
+          <cell-btn @click.native="routeTo">审核</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
@@ -94,7 +91,7 @@ export default {
           checked: true
         },
         {
-          label: '登记时间',
+          label: '申请时间',
           prop: 'type',
           checked: true
         },
@@ -108,9 +105,9 @@ export default {
     }
   },
   methods: {
-    goToDetail () {
+    routeTo () {
       this.$tab.append({
-        name: 'bus-data-detail'
+        name: 'bus-businessH-recordCheck'
       })
     },
     reset () {
