@@ -1,14 +1,10 @@
 <template>
-  <card-box>
-    <div class="function-container">
-      <slot></slot>
-    </div>
-  </card-box>
+  <div class="function-container">
+    <slot></slot>
+  </div>
 </template>
 <script>
-import cardBox from './cardBox.vue'
 export default {
-  components: { cardBox },
   data () {
     return {
 

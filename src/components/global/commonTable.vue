@@ -1,7 +1,7 @@
 
 <template>
 <!-- eslint-disable vue/valid-v-bind -->
-  <div style="position:relative">
+  <div class="common-table-container" style="position:relative">
     <span class="num-count" v-show="selectBox && selection.length>0">已选择<span class="num">{{selection.length}}</span></span>
     <!--  自定义表头显示项目数 -->
     <el-popover popper-class="tableBtn-popper" v-if="checked">
@@ -13,13 +13,14 @@
       <el-button class="poper-btn" slot="reference" icon="el-icon-s-grid" plain size="mini"></el-button>
     </el-popover>
     <!--  公共table列表 -->
+    <!-- :[tableHeight.prop]="tableHeight.value" -->
     <el-table ref="commonTable"
       @select="selectSingleBox"
       @select-all="selectAllBox"
       @row-click="selectRow"
       :data="tableList"
-      :[tableHeight.prop]="tableHeight.value"
       size="mini"
+      :[tableHeight.prop]="tableHeight.value"
       highlight-current-row
       :border="border">
       <el-table-column v-if="selectBox" type="selection" align="center" width="40"></el-table-column>

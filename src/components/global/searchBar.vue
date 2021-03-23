@@ -1,11 +1,9 @@
 <template>
-  <card-box>
-    <transition name="list-complete">
-      <div class="search-container">
-        <slot></slot>
-      </div>
-    </transition>
-  </card-box>
+  <transition name="list-complete">
+    <div class="search-container">
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 <script>
 export default {

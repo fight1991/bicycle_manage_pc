@@ -29,7 +29,7 @@ const webpackConfig = {
     },
     open: true,
     host: '127.0.0.1',
-    port: 9000,
+    port: 9009,
     https: true,
     hotOnly: true,
     proxy: { // 设置代理

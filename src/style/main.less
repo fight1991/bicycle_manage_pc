@@ -20,8 +20,11 @@
 //     width: 33.33333%;
 //   }
 // }
-.view-port {
+.view-port-min { // 最小高
   min-height: calc(100vh - 110px);
+}
+.view-port-fix { // 固定高
+  height: calc(100vh - 110px);
 }
 .bg-c {
   background-color: #fff;
@@ -47,8 +50,62 @@
 }
 .sys-main { // 页面主要样式
   margin: 0 10px 0;
-  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  .search-container {
+    padding: 15px;
+    background-color: #fff;
+    margin-bottom: 15px;
+  }
+  .function-container {
+    padding: 15px;
+    background-color: #fff;
+    // 表格上方操作按钮
+    .table-btn {
+      padding-bottom: 15px;
+      .el-button {
+        padding: 6px 7px;
+        margin-right: 5px;
+        font-size: 12px;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        .iconfont {
+          font-size: 12px;
+        }
+      }
+      .el-button [class*=iconfont]+span {
+        margin-left: 5px;
+      }
+    }
+  }
+  // 列表页表格自适应高度样式
+  .full-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .function-container {
+      box-sizing: border-box;
+      position: relative;
+      padding: 55px 15px;
+      flex: 1;
+      .common-table-container {
+        height: 100%;
+      }
+      .table-btn, .page-list {
+        position: absolute;
+      }
+      .table-btn {
+        top: 15px;
+        left: 15px;
+        padding-bottom: 0;
+      }
+      .page-list {
+        bottom: 15px;
+        right: 15px;
+        padding-top: 0;
+      }
+    }
+  }
   .el-card:not(.no-bottom) {
     margin-bottom: 12px;
   }
@@ -71,17 +128,6 @@
     display: flex;
     justify-content: flex-end;
   }
-  .function-container {
-    .el-icon-warning {
-      color: #E6A23C;
-    }
-    .el-icon-success {
-      color: #67C23A;
-    }
-    .el-icon-error {
-      color: #F96867;
-    }
-  }
   .el-card {
     border: none;
     border-radius: 0px;
@@ -91,10 +137,7 @@
   }
   .el-table__header th>.cell{
     text-align: center;
-    // color: @sys-main-text;
-    color: rgba(0,0,0,.85);
-    font-weight: 400;
-    line-height: 16px;
+    color: @sys-text;
   }
   .el-table__empty-block {
     align-items: inherit;
@@ -127,36 +170,10 @@
     // }
     .el-table__body td .cell {
       font-weight: normal;
-      font-size: 12px;
-      color: @sys-main-text;
+      font-size: 14px;
+      color: @sys-text;
     }
-    // 表格上方操作按钮
-    .table-btn {
-      padding-bottom: 15px;
-      .el-button {
-        padding: 6px 7px;
-        margin: 0 0 0 5px;
-        font-size: 12px;
-        border-radius: 2px;
-        display: flex;
-        align-items: center;
-        .iconfont {
-          font-size: 12px;
-        }
-      }
-      .el-button [class*=iconfont]+span {
-        margin-left: 5px;
-      }
-    }
-    // 表格内操作
-    .table-op-btn {
-      .iconfont {
-        font-size: 20px;
-        margin: 0 5px;
-        cursor: pointer;
-        color: @sys-main-header;
-      }
-    }
+    
   }
   .el-button.is-disabled,
   .el-button.is-disabled:focus,
@@ -392,9 +409,6 @@
   }
   .tab-scrollbar-wrapper {
     overflow-x: hidden;
-    .el-scrollbar__view {
-      // min-width: 780px;
-    }
   }
 }
 
