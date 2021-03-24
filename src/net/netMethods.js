@@ -1,11 +1,4 @@
-import { $get, $post, $upload, $all } from './netInit'
-
-const requests = {
-  $get,
-  $post,
-  $upload,
-  $all
-}
+import * as requests from './netInit'
 
 export default {
   install (Vue) {
