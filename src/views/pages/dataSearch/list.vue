@@ -1,5 +1,5 @@
 <template>
-  <section class="sys-main">
+  <section class="sys-main view-port-min">
     <!-- 查询区域 -->
     <search-bar>
       <el-form size="mini" label-width="70px" label-position="left" :model="searchForm">
@@ -62,6 +62,15 @@ export default {
       typeList: [],
       statusList: [],
       resultList: [
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
+        { type: '张三' },
         { type: '张三' },
         { type: '张三' },
         { type: '张三' }
