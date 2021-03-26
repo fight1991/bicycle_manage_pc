@@ -94,7 +94,6 @@ export default {
     return {
       accountId: '',
       vehicleId: '',
-      baseForm: {},
       detailForm: {}
     }
   },
@@ -123,8 +122,8 @@ export default {
   display: flex;
 }
 .img-detail, .img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
 }
 .img-detail {
   background-color: @sys-bg;

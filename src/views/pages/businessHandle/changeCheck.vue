@@ -7,47 +7,47 @@
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
               <el-form-item label="车牌号码:">
-                <div>ET00001</div>
+                <div>{{detailForm.plateNo}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="整车编号:">
-                <div>ET00001</div>
+                <div>{{detailForm.vin}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆品牌:">
-                <div>ET00001</div>
+                <div>{{detailForm.brand}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="型号规格:">
-                <div>ET00001</div>
+                <div>{{detailForm.specificationsModel}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆属性:">
-                <div>ET00001</div>
+                <div>{{detailForm.properties}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="原车主:">
-                <div>ET00001</div>
+                <div>{{detailForm.idName1}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="原车主联系方式:">
-                <div>ET00001</div>
+                <div>{{detailForm.mobile1}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="新车主:">
-                <div>ET00001</div>
+                <div>{{detailForm.idName2}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="新车主联系方式:">
-                <div>ET00001</div>
+                <div>{{detailForm.mobile2}}</div>
               </el-form-item>
             </el-col>
           </el-row>
@@ -55,39 +55,46 @@
       </div>
       <!-- 审核意见区域 -->
       <div class="part-two">
-        <check></check>
-      </div>
-      <!-- 提交按钮区域 -->
-      <div class="part-three">
-        <el-row type="flex" justify="center">
-          <el-button type="primary" @click="submitBtn">提交</el-button>
-          <el-button @click="cancelBtn">取消</el-button>
-        </el-row>
+        <check
+          type="change"
+          :ways="''"
+          :accountId="accountId"
+          :vehicleId="vehicleId">
+        </check>
       </div>
     </card-box>
   </section>
 </template>
 <script>
 import check from './components/check'
+import { changeDetail } from '@/api/operator'
 export default {
   components: {
     check
   },
   data () {
     return {
-      baseForm: {}
+      accountId: '',
+      vehicleId: '',
+      detailForm: {}
     }
   },
+  created () {
+    let { accountId, vehicleId } = this.$route.query
+    this.accountId = accountId
+    this.vehicleId = vehicleId
+    this.getDetail()
+  },
   methods: {
-    // 表单提交
-    submitBtn () {
-
-    },
-    // 取消按钮, 关闭当前页签, 并刷新返回列表页
-    cancelBtn () {
-      this.$tab.back({
-        name: 'bus-businessH-change'
+    // 获取详情
+    async getDetail () {
+      let { result } = await changeDetail({
+        accountId: this.accountId,
+        vehicleId: this.vehicleId
       })
+      if (result) {
+        this.detailForm = result
+      }
     }
   }
 }

@@ -65,7 +65,7 @@ export default {
       pagination: {
         pageSize: 10,
         currPage: 1,
-        count: 50
+        count: 0
       },
       tableHead: [
         {

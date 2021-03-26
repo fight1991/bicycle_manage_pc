@@ -20,7 +20,10 @@
                 clearable
                 style="width:100%"
                 v-model="times"
-                value-format="timestamp"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
                 :picker-options="pickerTimeOptions"
                 type="daterange">
               </el-date-picker>
@@ -37,7 +40,7 @@
     <func-bar>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
         <template #op="{row}">
-          <cell-btn @click.native="routeTo">审核</cell-btn>
+          <cell-btn @click.native="routeTo(row)">审核</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
@@ -47,57 +50,53 @@
   </section>
 </template>
 <script>
+import { scrapList } from '@/api/operator'
+
 export default {
   data () {
     return {
       searchForm: {
-        version: '',
-        type: '',
-        status: ''
+        plateNo: '',
+        vin: '',
+        updatedTimeStart: '',
+        updatedTimeEnd: ''
       },
       times: [],
-      typeList: [],
-      statusList: [],
-      resultList: [
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' }
-      ],
-      selection: [],
+      resultList: [],
       pagination: {
         pageSize: 10,
         currPage: 1,
-        count: 50
+        count: 0
       },
       tableHead: [
         {
           label: '车牌号',
-          prop: 'type',
+          prop: 'plateNo',
           checked: true
         },
         {
           label: '车辆品牌',
-          prop: 'type',
+          prop: 'brand',
           checked: true
         },
         {
           label: '整车编号',
-          prop: 'type',
+          prop: 'vin',
           checked: true
         },
         {
           label: '车主名',
-          prop: 'type',
+          prop: 'idName',
           checked: true
         },
         {
           label: '申请时间',
-          prop: 'type',
+          prop: 'createdTime',
           checked: true
         },
         {
           label: '申请原因',
-          prop: 'type',
+          prop: 'reason',
           checked: true
         },
         {
@@ -109,17 +108,26 @@ export default {
       ]
     }
   },
+  created () {
+    this.search()
+  },
   methods: {
-    routeTo () {
+    routeTo (row) {
+      let { accountId, vehicleId } = row
       this.$tab.append({
-        name: 'bus-businessH-scrapCheck'
+        name: 'bus-businessH-scrapCheck',
+        query: {
+          accountId,
+          vehicleId
+        }
       })
     },
     reset () {
       this.searchForm = {
-        version: '',
-        type: '',
-        status: ''
+        plateNo: '',
+        vin: '',
+        updatedTimeStart: '',
+        updatedTimeEnd: ''
       }
       this.search()
     },
@@ -129,19 +137,23 @@ export default {
     },
     // 获取列表
     async getList (pagination) {
-      this.selection = []
-      let { result } = await this.$post({
-        url: '/c/v0/module/list',
-        data: {
-          ...pagination,
-          condition: this.searchForm
-        }
+      if (this.times && this.times.length > 0) {
+        this.searchForm.updatedTimeStart = this.times[0]
+        this.searchForm.updatedTimeEnd = this.times[1]
+      } else {
+        this.searchForm.updatedTimeStart = ''
+        this.searchForm.updatedTimeEnd = ''
+      }
+      let { result } = await scrapList({
+        pagination,
+        params: this.searchForm
       })
       if (result) {
-        this.resultList = result.data || []
-        this.pagination.count = result.count
-        this.pagination.currPage = result.currPage
-        this.pagination.pageSize = result.pageSize
+        let { pagination, list } = result
+        this.resultList = list || []
+        this.pagination.count = pagination.count
+        this.pagination.currPage = pagination.currPage
+        this.pagination.pageSize = pagination.pageSize
       }
     }
   }
