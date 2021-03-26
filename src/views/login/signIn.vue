@@ -8,6 +8,7 @@
             <el-col :span="24">
               <el-form-item prop="userName">
                 <el-input
+                  ref="usernameInput"
                   v-model="formData.userName"
                   placeholder="账号">
                   <i slot="prefix" class="iconfont icon-zhanghao icon-style"></i>
@@ -17,6 +18,7 @@
             <el-col :span="24">
               <el-form-item prop="password">
                 <el-input
+                  ref="passwordInput"
                   v-model="formData.password"
                   @keyup.native.enter="loginBtn"
                   placeholder="密码" :type="isShowPW">
@@ -63,6 +65,19 @@ export default {
       return this.isHide ? 'password' : 'text'
     }
   },
+  created () {
+    let username = storage.getStorage('username')
+    if (username) {
+      this.formData.userName = username
+    }
+  },
+  mounted () {
+    if (this.formData.userName) {
+      this.$refs.passwordInput.focus()
+    } else {
+      this.$refs.usernameInput.focus()
+    }
+  },
   methods: {
     async loginBtn () {
       console.log('哈哈')
@@ -76,7 +91,11 @@ export default {
         if (result) {
           // 保存token
           storage.setStorage('token', result.token)
+          // 保存用户名
+          storage.setStorage('username', this.formData.userName)
           this.$store.commit('saveToken', result.token)
+          this.$store.commit('setUserInfo', this.formData)
+          this.$router.replace('/')
         }
       }
     }

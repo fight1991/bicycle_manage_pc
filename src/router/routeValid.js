@@ -15,7 +15,6 @@ const beforeEach = async (to, from, next) => {
   // 登录页直接放行
   if (to.path === '/login') {
     storage.removeStorage('token')
-    storage.removeLoginInfo()
     storage.clearSession()
     store.state.isFirst = true
     next()

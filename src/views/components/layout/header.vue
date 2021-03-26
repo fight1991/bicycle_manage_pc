@@ -21,12 +21,12 @@
       </div> -->
       <!-- 用户名 -->
       <div class="tag-box">
-        <el-tag size="small">乔峰</el-tag>
+        <el-tag size="small">{{userInfo.username}}</el-tag>
       </div>
       <!-- 用户角色 -->
-      <div class="tag-box">
+      <!-- <div class="tag-box">
         <el-tag type="success" size="small">丐帮帮主</el-tag>
-      </div>
+      </div> -->
       <!-- 用户画像 -->
       <el-dropdown
         @command="userOption"
@@ -36,7 +36,7 @@
           <div class="user-logo"><img :src="userLogo" alt=""></div>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="user">个人中心</el-dropdown-item>
+          <!-- <el-dropdown-item command="user">个人中心</el-dropdown-item> -->
           <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -72,6 +72,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { loginOut } from '@/api/user'
 export default {
   name: 'layout-header',
   data () {
@@ -136,9 +137,7 @@ export default {
         content: '您确定要退出登录吗?'
       })
       if (!res) return
-      let { result } = await this.$post({
-        url: '/c/v0/user/logout'
-      })
+      let { result } = await loginOut()
       if (result) {
         let { href } = this.$router.resolve({
           path: '/login'
