@@ -8,6 +8,13 @@ let {
   onResponseReject
 } = interceptors
 
+// 入参统一包装
+const paramsPack = (data) => {
+  return {
+    accessType: 'pc',
+    data
+  }
+}
 /* eslint-disable */
 // axios构造实例类
 class InitAxios {
@@ -28,19 +35,19 @@ const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE)['instance']
 
 // 初始化get方法
 const getInstance =  (url, data) => {
-  return Fetch_COMMON['get'](url, { params: data })
+  return Fetch_COMMON['get'](url, { params: paramsPack(data) })
 }
 // 初始化post方法
 const postInstance = (url, data) => {
-  return Fetch_COMMON['post'](url, data)
+  return Fetch_COMMON['post'](url, paramsPack(data))
 }
 // 初始化upload方法
 const uploadInstance = (url, data) => {
-  return Fetch_UPLOAD['post'](url, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+  return Fetch_UPLOAD['post'](url, paramsPack(data), { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 // 初始化批量请求all方法
 const allInstance = (data) => {
-  return Promise.all(data)
+  return Promise.all(paramsPack(data))
 }
 
 export const $get = ({ url, data, isLoad, globalLoading }) => {

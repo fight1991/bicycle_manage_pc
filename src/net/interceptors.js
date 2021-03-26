@@ -1,7 +1,6 @@
 import router from '@/router'
 import storage from '@/util/storage'
 import { Message } from 'element-ui'
-
 /**
  * 请求拦截器 onRequestResolve
  * @param {*} config

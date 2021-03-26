@@ -6,9 +6,9 @@
         <el-form ref="form" :model="formData" label-width="0px" :rules="rules">
           <el-row>
             <el-col :span="24">
-              <el-form-item prop="account">
+              <el-form-item prop="userName">
                 <el-input
-                  v-model="formData.account"
+                  v-model="formData.userName"
                   placeholder="账号">
                   <i slot="prefix" class="iconfont icon-zhanghao icon-style"></i>
                 </el-input>
@@ -33,16 +33,17 @@
   </div>
 </template>
 <script>
+import { goLogin } from '@/api/user'
 export default {
   data () {
     return {
       formData: {
-        account: '',
-        password: '121212'
+        userName: '',
+        password: ''
       },
       isHide: true,
       rules: {
-        account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+        userName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       }
     }
@@ -56,11 +57,16 @@ export default {
     }
   },
   methods: {
-    loginBtn () {
-      console.log('哈哈')
+    async loginBtn () {
       let isPass = true
       this.$refs.form.validate(valid => (isPass = valid))
-      console.log(isPass)
+      if (isPass) {
+        let { result } = await goLogin({
+          ...this.formData
+        })
+        // 登录成功
+        if (result) {}
+      }
     }
   }
 }
