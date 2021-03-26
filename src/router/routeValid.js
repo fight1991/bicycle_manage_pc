@@ -34,6 +34,7 @@ const beforeEach = async (to, from, next) => {
   if (store.state.isFirst) {
     // 将token保存在内存中
     store.state.token = storage.getStorage('token')
+    store.state.userInfo.username = storage.getStorage('username')
     // 用户信息查询
     // 权限查询
     store.commit('changeFirst', false)
