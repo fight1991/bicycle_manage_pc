@@ -10,7 +10,7 @@
         </el-breadcrumb>
       </div>
       <!-- 刷新按钮 -->
-      <div v-show="$route.name!='tab-index'" class="refresh-button" @click="refreshCurrentPage" title="刷新当前页面">
+      <div v-show="$route.name!='tab-index'" class="refresh-button" @click="refreshcurrPage" title="刷新当前页面">
         <i class="el-icon-refresh-right"></i>
       </div>
     </div>
@@ -99,7 +99,7 @@ export default {
 
   },
   methods: {
-    refreshCurrentPage () {
+    refreshcurrPage () {
       this.$store.dispatch('refreshTab', this.$store.getters.currentTabInfo)
     },
     toggleMenu () {

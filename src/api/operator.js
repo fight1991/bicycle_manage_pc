@@ -16,7 +16,7 @@ export const changeDetail = (data) => {
   })
 }
 // 备案人变更 - 列表
-export const changeCheck = (data) => {
+export const changeList = (data) => {
   return $post({
     url: '/battery-car-management/operator/audit/ownership_change/list',
     data
@@ -43,7 +43,7 @@ export const recordList = (data) => {
     data
   })
 }
-// 报废审核 
+// 报废审核
 export const scrapCheck = (data) => {
   return $post({
     url: '/battery-car-management/operator/audit/scrap/change_status',
@@ -57,7 +57,7 @@ export const scrapDetail = (data) => {
     data
   })
 }
-// 报废审核 
+// 报废审核列表
 export const scrapList = (data) => {
   return $post({
     url: '/battery-car-management/operator/audit/scrap/list',

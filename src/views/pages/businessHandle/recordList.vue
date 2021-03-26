@@ -20,7 +20,10 @@
                 clearable
                 style="width:100%"
                 v-model="times"
-                value-format="timestamp"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
                 :picker-options="pickerTimeOptions"
                 type="daterange">
               </el-date-picker>
@@ -47,6 +50,7 @@
   </section>
 </template>
 <script>
+import { recordList } from '@/api/operator'
 export default {
   data () {
     return {
@@ -57,43 +61,36 @@ export default {
         updatedTimeEnd: ''
       },
       times: [],
-      typeList: [],
-      statusList: [],
-      resultList: [
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' }
-      ],
-      selection: [],
+      resultList: [],
       pagination: {
         pageSize: 10,
-        currentPage: 1,
-        total: 50
+        currPage: 1,
+        count: 50
       },
       tableHead: [
         {
           label: '车牌号',
-          prop: 'type',
+          prop: 'plateNo',
           checked: true
         },
         {
           label: '车辆品牌',
-          prop: 'type',
+          prop: 'brand',
           checked: true
         },
         {
           label: '整车编号',
-          prop: 'type',
+          prop: 'vin',
           checked: true
         },
         {
           label: '车主名',
-          prop: 'type',
+          prop: 'idName',
           checked: true
         },
         {
           label: '申请时间',
-          prop: 'type',
+          prop: 'createdTime',
           checked: true
         },
         {
@@ -104,6 +101,9 @@ export default {
         }
       ]
     }
+  },
+  created () {
+    this.search()
   },
   methods: {
     routeTo () {
@@ -121,24 +121,28 @@ export default {
       this.search()
     },
     search () {
-      this.pagination.currentPage = 1
+      this.pagination.currPage = 1
       this.getList(this.pagination)
     },
     // 获取列表
     async getList (pagination) {
-      this.selection = []
-      let { result } = await this.$post({
-        url: '/c/v0/module/list',
-        data: {
-          ...pagination,
-          condition: this.searchForm
-        }
+      if (this.times && this.times.length > 0) {
+        this.searchForm.updatedTimeStart = this.times[0]
+        this.searchForm.updatedTimeEnd = this.times[1]
+      } else {
+        this.searchForm.updatedTimeStart = ''
+        this.searchForm.updatedTimeEnd = ''
+      }
+      let { result } = await recordList({
+        pagination,
+        params: this.searchForm
       })
       if (result) {
-        this.resultList = result.data || []
-        this.pagination.total = result.total
-        this.pagination.currentPage = result.currentPage
-        this.pagination.pageSize = result.pageSize
+        let { pagination, list } = result
+        this.resultList = list || []
+        this.pagination.count = pagination.count
+        this.pagination.currPage = pagination.currPage
+        this.pagination.pageSize = pagination.pageSize
       }
     }
   }

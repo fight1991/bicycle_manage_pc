@@ -64,8 +64,8 @@ export default {
       selection: [],
       pagination: {
         pageSize: 10,
-        currentPage: 1,
-        total: 1000
+        currPage: 1,
+        count: 1000
       },
       tableHead: [
         {
@@ -106,7 +106,7 @@ export default {
       this.search()
     },
     search () {
-      this.pagination.currentPage = 1
+      this.pagination.currPage = 1
       this.getList(this.pagination)
     },
     // 获取列表
@@ -121,8 +121,8 @@ export default {
       })
       if (result) {
         this.resultList = result.data || []
-        this.pagination.total = result.total
-        this.pagination.currentPage = result.currentPage
+        this.pagination.count = result.count
+        this.pagination.currPage = result.currPage
         this.pagination.pageSize = result.pageSize
       }
     }

@@ -26,7 +26,7 @@
       <el-table-column v-if="selectBox" type="selection" align="center" width="40"></el-table-column>
       <el-table-column v-if="showNum" width="50" label="序号" align="center">
         <template slot-scope="scope">
-          {{(scope.$index + 1) + pagination.pageSize*(pagination.currentPage - 1)}}
+          {{(scope.$index + 1) + pagination.pageSize*(pagination.currPage - 1)}}
         </template>
       </el-table-column>
       <template v-for="(item,index) in trueTableHead">
@@ -129,7 +129,7 @@ export default {
       default: () => {
         return {
           pageSize: 50,
-          currentPage: 1
+          currPage: 1
         }
       }
     },
