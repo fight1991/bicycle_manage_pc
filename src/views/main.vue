@@ -10,7 +10,7 @@
           <layout-aside :startP="startP" :endP="endP" @getMoveDistance="getMoveDistance"></layout-aside>
         </div>
       </el-aside>
-      <el-container class="main-container">
+      <el-container class="main-container" v-loading="currentTabInfo.loadingNum > 0">
         <el-header class="main-header" height="70px">
           <layout-header></layout-header>
           <layout-tab></layout-tab>
@@ -31,6 +31,7 @@ import layoutHeader from '@/views/components/layout/header'
 import layoutTab from '@/views/components/layout/myTab'
 import layoutAside from '@/views/components/layout/sliderBar/aside'
 import tabView from '@/views/components/layout/tabView'
+import { mapGetters } from 'vuex'
 export default {
   name: 'router-main',
   components: {
@@ -53,7 +54,10 @@ export default {
   computed: {
     isDuration () {
       return this.distance > this.initValue
-    }
+    },
+    ...mapGetters([
+      'currentTabInfo'
+    ])
   },
   methods: {
     btnClick () {

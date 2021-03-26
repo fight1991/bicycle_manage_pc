@@ -3,7 +3,7 @@
     <card-box>
       <!-- 表单回显区域 -->
       <div class="part-one">
-        <el-form :model="baseForm" label-position="left" label-width="90px">
+        <el-form label-position="left" label-width="90px">
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
               <el-form-item label="车牌号码:">
