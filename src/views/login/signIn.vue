@@ -34,6 +34,7 @@
 </template>
 <script>
 import { goLogin } from '@/api/user'
+import storage from '@/util/storage'
 export default {
   data () {
     return {
@@ -43,8 +44,14 @@ export default {
       },
       isHide: true,
       rules: {
-        userName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        userName: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
+          { pattern: /^[a-zA-Z0-9_]{6,32}$/, message: '账号长度6~32位', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { pattern: /^[a-zA-Z0-9_]{6,32}$/, message: '密码长度6~32位', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -58,6 +65,7 @@ export default {
   },
   methods: {
     async loginBtn () {
+      console.log('哈哈')
       let isPass = true
       this.$refs.form.validate(valid => (isPass = valid))
       if (isPass) {
@@ -65,7 +73,11 @@ export default {
           ...this.formData
         })
         // 登录成功
-        if (result) {}
+        if (result) {
+          // 保存token
+          storage.setStorage('token', result.token)
+          this.$store.commit('saveToken', result.token)
+        }
       }
     }
   }

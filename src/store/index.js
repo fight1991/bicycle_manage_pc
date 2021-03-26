@@ -10,6 +10,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {})
 
 const state = {
+  token: '', // 用户令牌
   tableH: 330, // 表格高度
   successCode: '0000', // 业务成功状态码
   isFirst: true, // 是否第一次进入系统
@@ -45,6 +46,9 @@ const getters = {
   }
 }
 const mutations = {
+  saveToken (state, token) {
+    state.token = token
+  },
   changeLoading (state, res) {
     res ? state.loadingNum++ : state.loadingNum--
     if (state.loadingNum < 0) {

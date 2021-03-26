@@ -1,5 +1,5 @@
 import router from '@/router'
-import storage from '@/util/storage'
+import store from '@/store'
 import { Message } from 'element-ui'
 /**
  * 请求拦截器 onRequestResolve
@@ -11,7 +11,7 @@ export default {
   onRequestResolve: function (config) {
     // ajax异步请求
     config.headers['X-Requested-With'] = 'XMLHttpRequest'
-    config.headers['token'] = storage.getStorage('token')
+    config.headers['token'] = store.state.token
     return config
   },
   // 请求发送失败之前

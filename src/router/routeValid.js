@@ -9,7 +9,6 @@ const _this = Vue.prototype
 // 登录校验、放行 注意: 有些cdn路由版本 地址栏输入路由地址时会加载2次
 const beforeEach = async (to, from, next) => {
   NProgress.start()
-  if (store.state.isFirst) {}
   // 访问store router.app.$options.store
   // 是否是开启全局loading
   store.commit('changeLoadingStatus', !to.path.includes('bus'))
@@ -34,6 +33,8 @@ const beforeEach = async (to, from, next) => {
   }
   // 第一次进入系统需要获取权限状态和用户信息(刷新地址栏)
   if (store.state.isFirst) {
+    // 将token保存在内存中
+    store.state.token = storage.getStorage('token')
     // 用户信息查询
     // 权限查询
     store.commit('changeFirst', false)
