@@ -1,5 +1,5 @@
 export default {
-  icon: 'icon-power',
+  icon: 'icon-shezhi',
   path: '/bus/system',
   name: 'bus-system',
   // hidden: true,

@@ -20,8 +20,8 @@ const state = {
   isGlobalLoading: false, // 是否进入后台管理(business)页面, 是的话设置适当的loading范围
   pagination: {
     pageSize: 10,
-    currentPage: 1,
-    total: 0
+    currPage: 1,
+    count: 0
   },
   access: -1, // 0 游客， 1 终端用户 ，2 安装商 3 代理商 ，255 厂商
   userInfo: {

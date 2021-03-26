@@ -1,5 +1,5 @@
 export default {
-  icon: 'icon-power',
+  icon: 'icon-yewubanli',
   path: '/bus/businessH',
   name: 'bus-businessH',
   // hidden: true,

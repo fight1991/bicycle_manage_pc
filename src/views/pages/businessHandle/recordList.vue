@@ -51,9 +51,10 @@ export default {
   data () {
     return {
       searchForm: {
-        version: '',
-        type: '',
-        status: ''
+        plateNo: '',
+        vin: '',
+        updatedTimeStart: '',
+        updatedTimeEnd: ''
       },
       times: [],
       typeList: [],
@@ -112,9 +113,10 @@ export default {
     },
     reset () {
       this.searchForm = {
-        version: '',
-        type: '',
-        status: ''
+        plateNo: '',
+        vin: '',
+        updatedTimeStart: '',
+        updatedTimeEnd: ''
       }
       this.search()
     },

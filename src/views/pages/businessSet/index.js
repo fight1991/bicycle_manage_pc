@@ -1,5 +1,5 @@
 export default {
-  icon: 'icon-power',
+  icon: 'icon-yewupeizhi',
   path: '/bus/businessD',
   name: 'bus-businessD',
   // hidden: true,

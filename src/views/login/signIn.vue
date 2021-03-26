@@ -89,6 +89,7 @@ export default {
         })
         // 登录成功
         if (result) {
+          console.log(result)
           // 保存token
           storage.setStorage('token', result.token)
           // 保存用户名

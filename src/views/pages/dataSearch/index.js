@@ -1,5 +1,5 @@
 export default {
-  icon: 'icon-power',
+  icon: 'icon-chaxun',
   path: '/bus/data',
   name: 'bus-data',
   // hidden: true,

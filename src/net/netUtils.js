@@ -10,7 +10,7 @@ export const requestFunc = async ({ url, data, isLoad = true, globalLoading, fun
     let res = await func(url, data)
     isLoad && closeLoading(store, tabId, loadingStatus)
     if (res.code === '0000') {
-      return { result: res.result || true }
+      return { result: res.data || true }
     }
     return { other: res }
   } catch (err) {
