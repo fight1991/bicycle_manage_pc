@@ -40,7 +40,7 @@
     <func-bar>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
         <template #op="{row}">
-          <cell-btn @click.native="routeTo">审核</cell-btn>
+          <cell-btn @click.native="routeTo(row)">审核</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
@@ -106,9 +106,14 @@ export default {
     this.search()
   },
   methods: {
-    routeTo () {
+    routeTo (row) {
+      let { accountId, vehicleId } = row
       this.$tab.append({
-        name: 'bus-businessH-recordCheck'
+        name: 'bus-businessH-recordCheck',
+        query: {
+          accountId,
+          vehicleId
+        }
       })
     },
     reset () {

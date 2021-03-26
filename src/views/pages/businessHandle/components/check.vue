@@ -1,46 +1,103 @@
 <template>
   <div class="check-area">
-    <el-form :model="checkForm" :rules="rules" label-width="80px" label-position="left">
+    <el-form ref="form" :model="checkForm" :rules="rules" label-width="90px" label-position="left">
       <el-row :gutter="10">
         <div class="form-item">
           <el-form-item label="审核结果">
             <el-radio-group v-model="checkForm.status">
-              <el-radio :label="1">通过</el-radio>
-              <el-radio :label="2">不通过</el-radio>
+              <el-radio label="Success">通过</el-radio>
+              <el-radio label="Fail">不通过</el-radio>
             </el-radio-group>
           </el-form-item>
         </div>
       </el-row>
-      <el-row :gutter="10">
+      <el-row :gutter="10" v-show="checkForm.status == 'Fail'">
         <div class="form-item">
-          <el-form-item label="审核结果">
+          <el-form-item label="不通过原因" prop="failReason">
             <el-input
               type="textarea"
               :rows="5"
               placeholder="请输入内容"
-              v-model="checkForm.reason">
+              v-model="checkForm.failReason">
             </el-input>
           </el-form-item>
         </div>
       </el-row>
     </el-form>
+    <!-- 提交按钮区域 -->
+    <div class="submit-btn">
+      <el-row type="flex" justify="center">
+        <el-button type="primary" @click="submitBtn">提交</el-button>
+        <el-button @click="cancelBtn">取消</el-button>
+      </el-row>
+    </div>
   </div>
 </template>
 <script>
+import { recordCheck, scrapCheck, changeCheck } from '@/api/operator'
+const opApi = {
+  record: recordCheck,
+  scrap: scrapCheck,
+  change: changeCheck
+}
 export default {
   name: 'my-check',
+  // ways 0:邮寄到家、1:安装点安装
+  props: ['type', 'ways', 'accountId', 'vehicleId'],
   data () {
     return {
       checkForm: {
-        status: 1,
-        reason: ''
+        status: 'Success',
+        failReason: ''
+      },
+      statusParams: {
+        // 申报的审核状态
+        recordFail: 14,
+        recordSuccess0: 15, // 15:审核通过, 邮寄车牌
+        recordSuccess1: 16, // 16:审核通过, 安装点安装
+        // 变更的审核状态
+        changeFail: 42,
+        changeSuccess: 43,
+        // 报废的审核状态
+        scrapFail: 32,
+        scrapSuccess: 33
       },
       rules: {
-        reason: [{ required: true, message: '原因必填', trigger: 'blur' }]
+        failReason: [{ required: true, message: '原因必填', trigger: 'blur' }]
       }
     }
   },
+  computed: {
+    statusCode () {
+      let { ways, type, checkForm } = this
+      return this.statusParams[type + checkForm.status + ways]
+    }
+  },
   methods: {
+    // 表单提交
+    async submitBtn () {
+      let { failReason, status } = this.checkForm
+      let isPass = true
+      if (status === 'Fail') { // 选择了审核不通过
+        this.$refs.form.validate(valid => (isPass = valid))
+      }
+      if (!isPass) return
+      let { result } = await opApi[this.type]({
+        accountId: this.accountId,
+        vehicleId: this.vehicleId,
+        status: this.statusCode,
+        failReason
+      })
+      if (result) {
+        this.cancelBtn()
+      }
+    },
+    // 取消按钮, 关闭当前页签, 并刷新返回列表页
+    cancelBtn () {
+      this.$tab.back({
+        name: 'bus-businessH-record'
+      })
+    }
   }
 }
 </script>
