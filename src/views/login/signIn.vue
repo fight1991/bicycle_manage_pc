@@ -88,14 +88,21 @@ export default {
         })
         // 登录成功
         if (result) {
-          console.log(result)
           // 保存token
           storage.setStorage('token', result.token)
           // 保存用户名
           storage.setStorage('username', this.formData.userName)
           this.$store.commit('saveToken', result.token)
           this.$store.commit('setUserInfo', this.formData)
-          this.$router.replace('/')
+          let tempPath = this.$route.query.redirect
+          if (tempPath) {
+            let path = decodeURIComponent(tempPath)
+            if (path !== '/') {
+              window.open(path, '_self')
+              return
+            }
+          }
+          window.open('/', '_self')
         }
       }
     }
