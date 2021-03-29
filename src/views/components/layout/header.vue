@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="head-container">
     <!-- 左侧页面导航 -->
     <div class="left-box flex-vertical-center">
@@ -36,7 +37,7 @@
           <div class="user-logo"><img :src="userLogo" alt=""></div>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <!-- <el-dropdown-item command="user">个人中心</el-dropdown-item> -->
+          <el-dropdown-item command="pw">修改密码</el-dropdown-item>
           <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -68,16 +69,26 @@
       </div>
     </el-drawer>
   </div>
+  <!-- 会出现表格固定列漂浮在dialog模块框之上 -->
+  <!-- <editpw-dialog :visible.sync="dialogVisible"></editpw-dialog> -->
+</div>
+
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { loginOut } from '@/api/user'
+// import editpwDialog from '@/views/login/editpwDialog'
 export default {
+  components: {
+    // editpwDialog
+  },
   name: 'layout-header',
+  props: ['openEditpwDialog'],
   data () {
     return {
       tabModule: false,
+      dialogVisible: false, // 修改密码弹框
       primaryColor: '#409EFF',
       setDrawerShow: false,
       userLogo: require('@/assets/user-logo.png')
@@ -109,15 +120,9 @@ export default {
       if (op === 'logout') {
         this.logout()
       }
-      if (op === 'user') {
-        this.goUser()
+      if (op === 'pw') {
+        this.$emit('openEditpwDialog')
       }
-    },
-    // 跳转到个人中心页面
-    goUser () {
-      this.$router.push({
-        name: 'user-center'
-      })
     },
     // 修改密码
     goResetPw () {

@@ -80,7 +80,6 @@ export default {
   },
   methods: {
     async loginBtn () {
-      console.log('哈哈')
       let isPass = true
       this.$refs.form.validate(valid => (isPass = valid))
       if (isPass) {

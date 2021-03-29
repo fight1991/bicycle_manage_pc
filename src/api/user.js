@@ -29,3 +29,10 @@ export const getUserInfo = (data) => {
     data
   })
 }
+// 修改密码
+export const changePassword = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/token/edit',
+    data
+  })
+}

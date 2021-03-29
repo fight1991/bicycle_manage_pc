@@ -5,7 +5,7 @@ export const requestFunc = async ({ url, data, isLoad = true, globalLoading, fun
   // 无论resolve还是reject都返回一个结果
   let tabId = store.state.tab.currentTab
   let loadingStatus = globalLoading || store.state.isGlobalLoading
-  console.log(loadingStatus)
+
   try {
     isLoad && startLoading(store, tabId, loadingStatus)
     let res = await func(url, data)

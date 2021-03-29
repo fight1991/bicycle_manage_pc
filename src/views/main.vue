@@ -12,7 +12,7 @@
       </el-aside>
       <el-container class="main-container" v-loading="currentTabInfo.loadingNum > 0">
         <el-header class="main-header" height="70px">
-          <layout-header></layout-header>
+          <layout-header @openEditpwDialog="openEditpwDialog"></layout-header>
           <layout-tab></layout-tab>
         </el-header>
         <el-main class="main-tab">
@@ -23,6 +23,7 @@
         </el-footer>
       </el-container>
     </el-container>
+    <editpw-dialog :visible.sync="pwEditDialog"></editpw-dialog>
   </div>
 </template>
 
@@ -31,6 +32,7 @@ import layoutHeader from '@/views/components/layout/header'
 import layoutTab from '@/views/components/layout/myTab'
 import layoutAside from '@/views/components/layout/sliderBar/aside'
 import tabView from '@/views/components/layout/tabView'
+import editpwDialog from '@/views/login/editpwDialog'
 import { mapGetters } from 'vuex'
 export default {
   name: 'router-main',
@@ -38,10 +40,12 @@ export default {
     layoutHeader,
     layoutAside,
     tabView,
-    layoutTab
+    layoutTab,
+    editpwDialog
   },
   data () {
     return {
+      pwEditDialog: false,
       logoSrc: require('@/assets/logo.png'),
       distance: 260,
       startP: 260,
@@ -62,6 +66,10 @@ export default {
   methods: {
     btnClick () {
 
+    },
+    // 打开密码框
+    openEditpwDialog () {
+      this.pwEditDialog = true
     },
     getMoveDistance (x) {
       this.distance = x
