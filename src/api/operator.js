@@ -64,3 +64,17 @@ export const scrapList = (data) => {
     data
   })
 }
+// 电动自行车查询
+export const vehicleList = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/vehicle/list',
+    data
+  })
+}
+// 电动自行车详情
+export const vehicleDetail = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/vehicle/list',
+    data
+  })
+}
