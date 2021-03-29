@@ -132,11 +132,9 @@ if (process.env.NODE_ENV === 'production') {
     onEnd: {
       delete: [ // 首先需要删除项目根目录下的dist.zip
         './dist/生产.zip',
-        './dist/测试.zip'
       ],
       archive: [ // 然后我们选择dist文件夹将之打包成dist.zip并放在根目录
-        { source: './dist/生产', destination: './dist/生产.zip' },
-        { source: './dist/测试', destination: './dist/测试.zip' }
+        { source: './dist/生产', destination: './dist/生产.zip' }
       ]
     }
   })
