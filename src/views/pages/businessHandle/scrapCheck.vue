@@ -27,7 +27,7 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆属性:">
-                <div>{{detailForm.properties}}</div>
+                <div>{{detailForm.propertiesValue}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
