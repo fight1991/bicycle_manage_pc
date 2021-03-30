@@ -60,7 +60,7 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="安装方式:">
-                <div>{{detailForm.installationMethods}}</div>
+                <div>{{detailForm.installationMethodsValue}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
@@ -75,7 +75,7 @@
       <div class="part-two">
         <check
           type="record"
-          :ways="detailForm.installationMethods || ''"
+          :ways="detailForm.installationMethodsValue || ''"
           :accountId="accountId"
           :vehicleId="vehicleId">
         </check>

@@ -6,7 +6,7 @@ import { Message } from 'element-ui'
  * tabMethods.open    打开新页签, 需要定义一个tabId
  * tabMethods.append  在已有的页签中查找,有则激活,无则添加
  * tabMethods.replace 替换已有页签,无则打开新页签
- * tabMethods.back    关闭当前tab,打开指定tab(如果存在就刷新)
+ * tabMethods.back    关闭当前tab,打开指定tab(通过refresh指定页签是否需要刷新)
  */
 const tabMethods = {
   open ({ name, tabId = '', tabTitle = '', query = {}, params = {} }) {
@@ -57,9 +57,14 @@ const tabMethods = {
   closeOtherTab () {
     store.dispatch('closeOtherTab')
   },
-  back ({ name, tabId = '', tabTitle = '', query, params }) {
+  back ({ name, tabId = '', refresh = false, tabTitle = '', query, params }) {
     if (!name) return
-    resolveParams('backTab', {
+    let actionName = 'backTab'
+    if (!refresh) {
+      actionName = 'appendTab'
+      store.dispatch('closeActiveTab')
+    }
+    resolveParams(actionName, {
       name,
       tabId,
       tabTitle,

@@ -89,13 +89,16 @@ export default {
         failReason
       })
       if (result) {
-        this.cancelBtn()
+        this.$tab.back({
+          name: 'bus-businessH-' + this.type,
+          refresh: true
+        })
       }
     },
     // 取消按钮, 关闭当前页签, 并刷新返回列表页
     cancelBtn () {
       this.$tab.back({
-        name: 'bus-businessH-record'
+        name: 'bus-businessH-' + this.type
       })
     }
   }

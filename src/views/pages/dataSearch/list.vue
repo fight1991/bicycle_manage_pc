@@ -108,7 +108,7 @@ export default {
   methods: {
     routeTo (row) {
       let { accountId, vehicleId } = row
-      this.$tab.append({
+      this.$tab.replace({
         name: 'bus-data-detail',
         query: {
           accountId,
