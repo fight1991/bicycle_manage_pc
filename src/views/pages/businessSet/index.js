@@ -2,7 +2,7 @@ export default {
   icon: 'icon-yewupeizhi',
   path: '/bus/businessD',
   name: 'bus-businessD',
-  // hidden: true,
+  hidden: true,
   meta: {
     permission: [1, 2, 3, 255],
     title: '业务配置'

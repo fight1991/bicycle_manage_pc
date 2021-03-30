@@ -6,12 +6,12 @@
         <el-row :gutter="30">
           <el-col :span="8">
             <el-form-item label="车牌号">
-              <el-input v-model="searchForm.version" placeholder="请输入车牌号"></el-input>
+              <el-input v-model="searchForm.plateNo" placeholder="请输入车牌号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="整车编号">
-              <el-input v-model="searchForm.version" placeholder="请输入整车编号"></el-input>
+              <el-input v-model="searchForm.vin" placeholder="请输入整车编号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -132,11 +132,11 @@ export default {
     // 获取列表
     async getList (pagination) {
       if (this.times && this.times.length > 0) {
-        this.searchForm.updatedTimeStart = this.times[0]
-        this.searchForm.updatedTimeEnd = this.times[1]
+        this.searchForm.registrationTimeStart = this.times[0]
+        this.searchForm.registrationTimeEnd = this.times[1]
       } else {
-        this.searchForm.updatedTimeStart = ''
-        this.searchForm.updatedTimeEnd = ''
+        this.searchForm.registrationTimeStart = ''
+        this.searchForm.registrationTimeEnd = ''
       }
       let { result } = await vehicleList({
         pagination,
