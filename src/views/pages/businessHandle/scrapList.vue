@@ -26,6 +26,7 @@
                 start-placeholder="开始时间"
                 end-placeholder="结束时间"
                 :picker-options="pickerTimeOptions"
+                :default-time="['00:00:00', '23:59:59']"
                 type="datetimerange">
               </el-date-picker>
             </el-form-item>

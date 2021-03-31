@@ -21,12 +21,12 @@
                 style="width:100%"
                 v-model="times"
                 align="right"
-                time-arrow-control
                 value-format="yyyy-MM-dd HH:mm:ss"
                 range-separator="至"
                 start-placeholder="开始时间"
                 end-placeholder="结束时间"
                 :picker-options="pickerTimeOptions"
+                :default-time="['00:00:00', '23:59:59']"
                 type="datetimerange">
               </el-date-picker>
             </el-form-item>

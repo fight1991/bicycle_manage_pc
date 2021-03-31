@@ -3,7 +3,8 @@ export default {
     return {
       pickerTimeOptions: {
         disabledDate (time) {
-          return time.getTime() > Date.now()
+          // return time.getTime() > Date.now()
+          return false
         }
       }
     }
