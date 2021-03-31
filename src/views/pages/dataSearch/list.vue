@@ -57,8 +57,8 @@ export default {
       searchForm: {
         plateNo: '',
         vin: '',
-        updatedTimeStart: '',
-        updatedTimeEnd: ''
+        registrationTimeStart: '',
+        registrationTimeEnd: ''
       },
       times: [],
       resultList: [],
@@ -90,7 +90,7 @@ export default {
         },
         {
           label: '登记时间',
-          prop: 'createdTime',
+          prop: 'registrationTime',
           checked: true
         },
         {
@@ -120,8 +120,8 @@ export default {
       this.searchForm = {
         plateNo: '',
         vin: '',
-        updatedTimeStart: '',
-        updatedTimeEnd: ''
+        registrationTimeStart: '',
+        registrationTimeEnd: ''
       }
       this.search()
     },

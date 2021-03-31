@@ -6,17 +6,17 @@
         <el-row :gutter="30">
           <el-col :span="8">
             <el-form-item label="姓名">
-              <el-input v-model="searchForm.version" placeholder="请输入姓名"></el-input>
+              <el-input v-model="searchForm.idName" placeholder="请输入姓名"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="手机号">
-              <el-input v-model="searchForm.version" placeholder="请输入手机号"></el-input>
+              <el-input v-model="searchForm.mobile" placeholder="请输入手机号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="身份证号">
-              <el-input v-model="searchForm.version" placeholder="请输入身份证号"></el-input>
+              <el-input v-model="searchForm.idNo" placeholder="请输入身份证号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24" align="right">
@@ -29,79 +29,88 @@
     <!-- 表格区域 -->
     <func-bar>
       <el-row class="table-btn" type="flex" justify="start">
-        <el-button size="mini" icon="iconfont icon-import">添加</el-button>
+        <el-button size="mini" icon="iconfont icon-add" @click="openDialog">添加</el-button>
       </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
-        <template v-slot:op="{row}">
-          删除
+        <template #op="{row}">
+          <cell-btn @click.native="deleteBtn(row)">删除</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
         <page-box :pagination.sync="pagination" @change="getList"></page-box>
       </div>
     </func-bar>
+    <!-- 添加安装员的dialog -->
+    <common-dialog
+      :visible.sync="addDialogVisible"
+      @close="closeDialog"
+      @cancelBtn="cancelBtn"
+      @confirmBtn="confirmBtn"
+      title="安装员添加">
+      <add-installer-form ref="installerForm"></add-installer-form>
+    </common-dialog>
   </section>
 </template>
 <script>
+import { operatorList, operatorDelete } from '@/api/operator'
+import AddInstallerForm from './components/addInstallerForm.vue'
 export default {
+  components: { AddInstallerForm },
   data () {
     return {
       searchForm: {
-        version: '',
-        type: '',
-        status: ''
+        createdTime: '',
+        idName: '',
+        idNo: '',
+        mobile: ''
       },
-      typeList: [],
-      statusList: [],
-      resultList: [
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' },
-        { type: '张三' }
-      ],
-      selection: [],
+      addDialogVisible: false, // 安装员添加dialog
+      resultList: [],
       pagination: {
         pageSize: 10,
         currPage: 1,
-        count: 1000
+        count: 0
       },
       tableHead: [
         {
           label: '姓名',
-          prop: 'type',
+          prop: 'idName',
           checked: true
         },
         {
           label: '手机号',
-          prop: 'type',
+          prop: 'mobile',
           checked: true
         },
         {
           label: '身份证号',
-          prop: 'type',
+          prop: 'idNo',
           checked: true
         },
         {
           label: '创建时间',
-          prop: 'type',
+          prop: 'createdTime',
           checked: true
         },
         {
           label: '操作',
           checked: true,
-          slotName: 'op'
+          slotName: 'op',
+          fixed: 'right'
         }
       ]
     }
   },
+  created () {
+    this.search()
+  },
   methods: {
     reset () {
       this.searchForm = {
-        version: '',
-        type: '',
-        status: ''
+        createdTime: '',
+        idName: '',
+        idNo: '',
+        mobile: ''
       }
       this.search()
     },
@@ -111,19 +120,52 @@ export default {
     },
     // 获取列表
     async getList (pagination) {
-      this.selection = []
-      let { result } = await this.$post({
-        url: '/c/v0/module/list',
-        data: {
-          ...pagination,
-          condition: this.searchForm
-        }
+      let { result } = await operatorList({
+        pagination,
+        params: this.searchForm
       })
       if (result) {
-        this.resultList = result.data || []
-        this.pagination.count = result.count
-        this.pagination.currPage = result.currPage
-        this.pagination.pageSize = result.pageSize
+        let { pagination, list } = result
+        this.resultList = list || []
+        this.pagination.count = pagination.count
+        this.pagination.currPage = pagination.currPage
+        this.pagination.pageSize = pagination.pageSize
+      }
+    },
+    // 打开添加安装员dialog
+    openDialog () {
+      this.addDialogVisible = true
+    },
+    // 弹框取消
+    cancelBtn () {
+      this.addDialogVisible = false
+    },
+    // 弹框关闭
+    closeDialog () {
+      this.$refs.installerForm.clearFormValid()
+    },
+    // 弹框中的确认按钮
+    async confirmBtn () {
+      let res = await this.$refs.installerForm.addInstaller()
+      // 添加成功, 关闭dialog, 并刷新列表
+      if (res) {
+        this.addDialogVisible = false
+        this.search()
+      }
+    },
+    // 删除安装员
+    async deleteBtn (row) {
+      let res = await this.$openConfirm({
+        content: '您确定要删除吗?'
+      })
+      if (!res) return
+      let { accountId } = row
+      let { result } = await operatorDelete({
+        accountId
+      })
+      if (result) {
+        this.$message.success('删除成功!')
+        this.search()
       }
     }
   }

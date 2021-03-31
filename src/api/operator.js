@@ -78,3 +78,34 @@ export const vehicleDetail = (data) => {
     data
   })
 }
+// 安装员配置相关api
+// 安装员删除
+export const operatorDelete = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/delete',
+    data
+  })
+}
+
+// 安装员模糊查询
+export const operatorQuery = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/fuzzy_query',
+    isLoad: false,
+    data
+  })
+}
+// 安装员列表
+export const operatorList = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/list',
+    data
+  })
+}
+// 安装员添加
+export const operatorAdd = (data) => {
+  return $post({
+    url: '/battery-car-management/operator/post',
+    data
+  })
+}
