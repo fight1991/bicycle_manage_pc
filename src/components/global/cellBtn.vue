@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <span class="text-color">
+    <span :style="{'color': color}">
       <slot></slot>
     </span>
     <el-divider v-if="showDivider" direction="vertical"></el-divider>
@@ -12,6 +12,10 @@ export default {
     showDivider: {
       type: Boolean,
       default: false
+    },
+    color: {
+      type: String,
+      default: '#1890FF'
     }
   },
   data () {

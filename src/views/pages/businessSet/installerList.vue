@@ -33,7 +33,7 @@
       </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
         <template #op="{row}">
-          <cell-btn @click.native="deleteBtn(row)">删除</cell-btn>
+          <cell-btn color="red" @click.native="deleteBtn(row)">删除</cell-btn>
         </template>
       </common-table>
       <div class="page-list">
