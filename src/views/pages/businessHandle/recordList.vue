@@ -59,8 +59,8 @@ export default {
       searchForm: {
         plateNo: '',
         vin: '',
-        updatedTimeStart: '',
-        updatedTimeEnd: ''
+        createdTimeStart: '',
+        createdTimeEnd: ''
       },
       times: [],
       resultList: [],
@@ -122,8 +122,8 @@ export default {
       this.searchForm = {
         plateNo: '',
         vin: '',
-        updatedTimeStart: '',
-        updatedTimeEnd: ''
+        createdTimeStart: '',
+        createdTimeEnd: ''
       }
       this.times = []
       this.search()
@@ -135,11 +135,11 @@ export default {
     // 获取列表
     async getList (pagination) {
       if (this.times && this.times.length > 0) {
-        this.searchForm.updatedTimeStart = this.times[0]
-        this.searchForm.updatedTimeEnd = this.times[1]
+        this.searchForm.createdTimeStart = this.times[0]
+        this.searchForm.createdTimeEnd = this.times[1]
       } else {
-        this.searchForm.updatedTimeStart = ''
-        this.searchForm.updatedTimeEnd = ''
+        this.searchForm.createdTimeStart = ''
+        this.searchForm.createdTimeEnd = ''
       }
       let { result } = await recordList({
         pagination,
