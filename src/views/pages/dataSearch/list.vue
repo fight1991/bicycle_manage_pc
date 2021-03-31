@@ -20,12 +20,14 @@
                 clearable
                 style="width:100%"
                 v-model="times"
+                align="right"
+                time-arrow-control
                 value-format="yyyy-MM-dd HH:mm:ss"
                 range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
+                start-placeholder="开始时间"
+                end-placeholder="结束时间"
                 :picker-options="pickerTimeOptions"
-                type="daterange">
+                type="datetimerange">
               </el-date-picker>
             </el-form-item>
           </el-col>
@@ -123,6 +125,7 @@ export default {
         registrationTimeStart: '',
         registrationTimeEnd: ''
       }
+      this.times = []
       this.search()
     },
     search () {
