@@ -75,7 +75,7 @@
       <div class="part-two">
         <check
           type="record"
-          :ways="detailForm.installationMethodsValue || ''"
+          :ways="detailForm.installationMethods || ''"
           :accountId="accountId"
           :vehicleId="vehicleId">
         </check>
