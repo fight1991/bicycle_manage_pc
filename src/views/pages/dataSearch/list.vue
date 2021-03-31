@@ -6,12 +6,12 @@
         <el-row :gutter="30">
           <el-col :span="8">
             <el-form-item label="车牌号">
-              <el-input v-model="searchForm.plateNo" placeholder="请输入车牌号"></el-input>
+              <el-input v-model="searchForm.plateNo" clearable placeholder="请输入车牌号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="整车编号">
-              <el-input v-model="searchForm.vin" placeholder="请输入整车编号"></el-input>
+              <el-input v-model="searchForm.vin" clearable placeholder="请输入整车编号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">

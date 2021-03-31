@@ -6,17 +6,17 @@
         <el-row :gutter="30">
           <el-col :span="8">
             <el-form-item label="姓名">
-              <el-input v-model="searchForm.idName" placeholder="请输入姓名"></el-input>
+              <el-input v-model="searchForm.idName" clearable placeholder="请输入姓名"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="手机号">
-              <el-input v-model="searchForm.mobile" placeholder="请输入手机号"></el-input>
+              <el-input v-model="searchForm.mobile" clearable placeholder="请输入手机号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="身份证号">
-              <el-input v-model="searchForm.idNo" placeholder="请输入身份证号"></el-input>
+              <el-input v-model="searchForm.idNo" clearable placeholder="请输入身份证号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24" align="right">
