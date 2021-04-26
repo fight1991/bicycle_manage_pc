@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+
 // 一次性导入所有modules
 const modulesFiles = require.context('./modules', true, /\.js$/)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -24,9 +25,8 @@ const state = {
     count: 0
   },
   access: -1, // 0 游客， 1 终端用户 ，2 安装商 3 代理商 ，255 厂商
-  userInfo: {
-    username: ''// 当前登录的用户名
-  },
+  userInfo: {},
+  permissions: [],
   errorInfo: {}
 }
 const getters = {
@@ -34,7 +34,7 @@ const getters = {
     return state.loadingNum > 0
   },
   username (state) {
-    return state.userInfo.username
+    return state.userInfo.userName
   }
 }
 const mutations = {
@@ -64,10 +64,10 @@ const mutations = {
     state.access = payLoad
   },
   setUserInfo (state, payLoad) {
-    state.userInfo.username = payLoad.userName
+    state.userInfo = payLoad
   },
-  setUsername (state, payLoad) {
-    state.username = payLoad
+  setPermissions (state, payLoad) {
+    state.permissions = payLoad
   },
   changeFirst (state, payLoad) {
     state.isFirst = payLoad

@@ -15,13 +15,14 @@ const paramsPack = (data) => {
     data
   }
 }
+
 /* eslint-disable */
 // axios构造实例类
 class InitAxios {
-  constructor (baseURL) {
+  constructor (baseURL, proxyHead) {
     this.instance = axios.create({
       // 开发环境中以/api开头的接口需要设置代理
-      baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL,
+      baseURL: process.env.NODE_ENV === 'development' ? proxyHead : baseURL,
       timeout: 15000
     })
     this.instance.interceptors.request.use(onRequestResolve, onRequestReject)
@@ -31,11 +32,11 @@ class InitAxios {
 
 // 配置get/post等请求实例
 // 用户相关
-const Fetch_USER = new InitAxios(process.env.VUE_APP_USER_API)['instance']
+const Fetch_USER = new InitAxios(process.env.VUE_APP_USER_API, '/api/user')['instance']
 // 车辆相关
-const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_USER_API)['instance']
+const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_USER_BUSINESS, '/api/business')['instance']
 // 上传
-const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE)['instance']
+const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE, '/api/file')['instance']
 
 // 初始化post方法
 const userPostInstance = (url, data) => {

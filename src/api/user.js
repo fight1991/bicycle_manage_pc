@@ -26,7 +26,7 @@ export const createAccount = (data) => {
 export const getUserInfo = (data) => {
   return $post({
     url: '/data-user/user/getUserByToken',
-    data
+    data: localStorage.getItem('token')
   })
 }
 // 修改密码

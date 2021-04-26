@@ -33,12 +33,28 @@ const webpackConfig = {
     https: true,
     hotOnly: false,
     proxy: { // 设置代理
-      '/api': { // =>相当于 http://127.0.0.1:9000/api(需要将axios配置的baseUrl='/api')接口以api开头的需要代理防止html, css, js静态资源也用了代理
-        target: process.env.VUE_APP_API, // => 代理到 http://192.168.10.118:8000/c/v0
+      '/api/user': { // =>相当于 http://127.0.0.1:9000/api(需要将axios配置的baseUrl='/api')接口以api开头的需要代理防止html, css, js静态资源也用了代理
+        target: process.env.VUE_APP_USER_API, // => 代理到 http://192.168.10.118:8000/c/v0
         ws: true,
         changeOrigin: true, // 允许跨域
         pathRewrite: {
-          '^/api': '' // 替代/api(因为接口地址没有/api)
+          '^/api/user': '' // 替代/api/*(因为接口地址没有/api)
+        }
+      },
+      '/api/business': {
+        target: process.env.VUE_APP_BUSINESS_API,
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/business': ''
+        }
+      },
+      '/api/file': {
+        target: process.env.VUE_APP_FILE,
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/file': ''
         }
       }
     }

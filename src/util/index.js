@@ -255,31 +255,4 @@ export function getTimespan (time) {
 export function deepCopy (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
-// 语言环境配置
-export function getLang () {
-  return {
-    display: {
-      en: 'English',
-      zh_CN: '中文',
-      pl: 'Polskie'
-    },
-    transform: {
-      en: 'en',
-      zh_CN: 'zh',
-      pl: 'pl'
-    }
-  }
-}
-// 角色key
-export function translateRole (access) {
-  switch (access) {
-    case 1:
-      return 'join.endUser'
-    case 2:
-      return 'join.installer'
-    case 3:
-      return 'join.agent'
-    default:
-      return 'join.admin'
-  }
-}
+

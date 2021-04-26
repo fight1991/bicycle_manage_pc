@@ -93,7 +93,6 @@ export default {
           // 保存用户名
           storage.setStorage('username', this.formData.userName)
           this.$store.commit('saveToken', result.token)
-          this.$store.commit('setUserInfo', this.formData)
           let tempPath = this.$route.query.redirect
           if (tempPath) {
             let path = decodeURIComponent(tempPath)

@@ -2,6 +2,7 @@ import store from '@/store'
 import storage from '@/util/storage'
 import Vue from 'vue'
 import NProgress from 'nprogress'
+import initUserInfo from '../api/initUserInfo'
 NProgress.configure({ showSpinner: false })
 
 const _this = Vue.prototype
@@ -16,7 +17,7 @@ const beforeEach = async (to, from, next) => {
   if (to.path === '/login') {
     storage.removeStorage('token')
     storage.clearSession()
-    store.state.isFirst = true
+    store.commit('changeFirst', true)
     next()
     return
   }
@@ -34,9 +35,9 @@ const beforeEach = async (to, from, next) => {
   if (store.state.isFirst) {
     // 将token保存在内存中
     store.state.token = storage.getStorage('token')
-    store.state.userInfo.username = storage.getStorage('username')
     // 用户信息查询
     // 权限查询
+    await initUserInfo()
     store.commit('changeFirst', false)
   }
   // 路由跳转鉴别权限
@@ -66,4 +67,5 @@ const afterEach = (to, from) => {
     // }
   }
 }
+
 export { beforeEach, afterEach }
