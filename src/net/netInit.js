@@ -11,7 +11,7 @@ let {
 // 入参统一包装
 const paramsPack = (data) => {
   return {
-    accessType: 'pc',
+    accessType: 'web',
     data
   }
 }
