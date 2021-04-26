@@ -1,5 +1,5 @@
 // 审核相关api
-import { $post } from '@/net/netInit'
+import { $post_business as $post } from '@/net/netInit'
 
 // 备案人变更 - 审核
 export const changeCheck = (data) => {

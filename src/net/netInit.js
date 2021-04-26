@@ -30,16 +30,19 @@ class InitAxios {
 }
 
 // 配置get/post等请求实例
-const Fetch_COMMON = new InitAxios(process.env.VUE_APP_API)['instance']
+// 用户相关
+const Fetch_USER = new InitAxios(process.env.VUE_APP_USER_API)['instance']
+// 车辆相关
+const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_USER_API)['instance']
+// 上传
 const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE)['instance']
 
-// 初始化get方法
-const getInstance =  (url, data) => {
-  return Fetch_COMMON['get'](url, { params: paramsPack(data) })
-}
 // 初始化post方法
-const postInstance = (url, data) => {
-  return Fetch_COMMON['post'](url, paramsPack(data))
+const userPostInstance = (url, data) => {
+  return Fetch_USER['post'](url, paramsPack(data))
+}
+const businessPostInstance = (url, data) => {
+  return Fetch_BUSINESS['post'](url, paramsPack(data))
 }
 // 初始化upload方法
 const uploadInstance = (url, data) => {
@@ -50,11 +53,11 @@ const allInstance = (data) => {
   return Promise.all(paramsPack(data))
 }
 
-export const $get = ({ url, data, isLoad, globalLoading }) => {
-  return requestFunc({ url, data, isLoad, globalLoading, func: getInstance })
+export const $post_user = ({ url, data, isLoad, globalLoading }) => {
+  return requestFunc({ url, data, isLoad, globalLoading, func: userPostInstance })
 }
-export const $post = ({ url, data, isLoad, globalLoading }) => {
-  return requestFunc({ url, data, isLoad, globalLoading, func: postInstance })
+export const $post_business = ({ url, data, isLoad, globalLoading }) => {
+  return requestFunc({ url, data, isLoad, globalLoading, func: businessPostInstance })
 }
 export const $upload = ({ url, data, isLoad, globalLoading }) => {
   return requestFunc({ url, data, isLoad, globalLoading, func: uploadInstance })
