@@ -84,7 +84,7 @@
   </section>
 </template>
 <script>
-import check from '../components/check'
+import check from './components/check'
 import { recordDetail } from '@/api/operator'
 export default {
   components: {

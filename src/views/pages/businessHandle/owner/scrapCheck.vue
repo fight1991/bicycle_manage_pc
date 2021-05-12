@@ -82,7 +82,7 @@
   </section>
 </template>
 <script>
-import check from '../components/check'
+import check from './components/check'
 import { scrapDetail } from '@/api/operator'
 
 export default {

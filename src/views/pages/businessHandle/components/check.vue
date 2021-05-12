@@ -34,16 +34,22 @@
   </div>
 </template>
 <script>
-import { recordCheck, scrapCheck, changeCheck } from '@/api/operator'
+import { recordCheck, scrapCheck, changeCheck, industryRecordCheck, industryScrapCheck } from '@/api/operator'
 const opApi = {
-  record: recordCheck,
-  scrap: scrapCheck,
-  change: changeCheck
+  owner: {
+    record: recordCheck,
+    scrap: scrapCheck,
+    change: changeCheck
+  },
+  industry: {
+    record: industryRecordCheck,
+    scrap: industryScrapCheck
+  }
 }
 export default {
   name: 'my-check',
   // ways 0:邮寄到家、1:安装点安装
-  props: ['type', 'ways', 'accountId', 'vehicleId'],
+  props: ['type', 'ways', 'accountId', 'vehicleId', 'pageFlag'],
   data () {
     return {
       checkForm: {
@@ -82,7 +88,7 @@ export default {
         this.$refs.form.validate(valid => (isPass = valid))
       }
       if (!isPass) return
-      let { result } = await opApi[this.type]({
+      let { result } = await opApi[this.pageFlag][this.type]({
         accountId: this.accountId,
         vehicleId: this.vehicleId,
         status: this.statusCode,

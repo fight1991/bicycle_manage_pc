@@ -3,7 +3,7 @@
     <card-box>
       <!-- 表单回显区域 -->
       <div class="part-one">
-        <el-form label-position="left" label-width="110px">
+        <el-form label-position="left" label-width="100px">
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
               <el-form-item label="车牌号码:">
@@ -31,23 +31,39 @@
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
-              <el-form-item label="原车主:">
-                <div>{{detailForm.idName1}}</div>
+              <el-form-item label="申请人:">
+                <div>{{detailForm.idName}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
-              <el-form-item label="原车主联系方式:">
-                <div>{{detailForm.mobile1}}</div>
+              <el-form-item label="申请时间:">
+                <div>{{detailForm.createdTime}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
-              <el-form-item label="新车主:">
-                <div>{{detailForm.idName2}}</div>
+              <el-form-item label="联系方式:">
+                <div>{{detailForm.mobile}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
-              <el-form-item label="新车主联系方式:">
-                <div>{{detailForm.mobile2}}</div>
+              <el-form-item label="申请原因:">
+                <div>{{detailForm.failReason}}</div>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="10">
+            <el-col :sm="12" :md="8">
+              <el-form-item label="车辆合格证:">
+                <div class="img-detail">
+                  <el-image class="img" fit="cover" :src="detailForm.urlCertification"></el-image>
+                </div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="车架图片:">
+                <div class="img-detail">
+                  <el-image class="img" fit="cover" :src="detailForm.vehicleImage"></el-image>
+                </div>
               </el-form-item>
             </el-col>
           </el-row>
@@ -56,8 +72,9 @@
       <!-- 审核意见区域 -->
       <div class="part-two">
         <check
-          type="change"
+          type="scrap"
           :ways="''"
+          :pageFlag="pageFlag"
           :accountId="accountId"
           :vehicleId="vehicleId">
         </check>
@@ -67,7 +84,11 @@
 </template>
 <script>
 import check from './components/check'
-import { changeDetail } from '@/api/operator'
+import { scrapDetail, industryScrapDetail } from '@/api/operator'
+const apiMap = {
+  owner: scrapDetail,
+  industry: industryScrapDetail
+}
 export default {
   components: {
     check
@@ -80,15 +101,16 @@ export default {
     }
   },
   created () {
-    let { accountId, vehicleId } = this.$route.query
+    let { accountId, vehicleId, pageFlag } = this.$route.query
     this.accountId = accountId
     this.vehicleId = vehicleId
+    this.pageFlag = pageFlag
     this.getDetail()
   },
   methods: {
     // 获取详情
     async getDetail () {
-      let { result } = await changeDetail({
+      let { result } = await apiMap[this.pageFlag]({
         accountId: this.accountId,
         vehicleId: this.vehicleId
       })
@@ -100,5 +122,15 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-
+.img-box {
+  display: flex;
+}
+.img-detail, .img {
+  width: 180px;
+  height: 180px;
+}
+.img-detail {
+  background-color: @sys-bg;
+  margin-top: 10px;
+}
 </style>

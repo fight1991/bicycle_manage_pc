@@ -52,11 +52,15 @@
   </section>
 </template>
 <script>
-import { scrapList } from '@/api/operator'
-
+import { scrapList, industryScrapList } from '@/api/operator'
+const apiMap = {
+  owner: scrapList,
+  industry: industryScrapList
+}
 export default {
   data () {
     return {
+      pageFlag: 'owner',
       searchForm: {
         plateNo: '',
         vin: '',
@@ -111,6 +115,8 @@ export default {
     }
   },
   created () {
+    let { pageFlag } = this.$route.meta
+    this.pageFlag = pageFlag
     this.search()
   },
   methods: {
@@ -120,7 +126,8 @@ export default {
         name: 'bus-businessH-scrapCheck',
         query: {
           accountId,
-          vehicleId
+          vehicleId,
+          pageFlag: this.pageFlag
         }
       })
     },
@@ -147,7 +154,7 @@ export default {
         this.searchForm.createdTimeStart = ''
         this.searchForm.createdTimeEnd = ''
       }
-      let { result, page } = await scrapList({
+      let { result, page } = await apiMap[this.pageFlag]({
         page: pagination,
         data: this.searchForm
       })

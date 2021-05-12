@@ -52,10 +52,15 @@
   </section>
 </template>
 <script>
-import { recordList } from '@/api/operator'
+import { recordList, industryRecordList } from '@/api/operator'
+const apiMap = {
+  owner: recordList,
+  industry: industryRecordList
+}
 export default {
   data () {
     return {
+      pageFlag: 'owner', // 居民车, 还是行业车
       searchForm: {
         plateNo: '',
         vin: '',
@@ -105,7 +110,14 @@ export default {
     }
   },
   created () {
+    let { pageFlag } = this.$route.meta
+    this.pageFlag = pageFlag
     this.search()
+  },
+  watch: {
+    '$route': function () {
+      this.search()
+    }
   },
   methods: {
     routeTo (row) {
@@ -114,7 +126,8 @@ export default {
         name: 'bus-businessH-recordCheck',
         query: {
           accountId,
-          vehicleId
+          vehicleId,
+          pageFlag: this.pageFlag
         }
       })
     },
@@ -141,7 +154,7 @@ export default {
         this.searchForm.createdTimeStart = ''
         this.searchForm.createdTimeEnd = ''
       }
-      let { result, page } = await recordList({
+      let { result, page } = await apiMap[this.pageFlag]({
         data: this.searchForm,
         page: pagination
       })
