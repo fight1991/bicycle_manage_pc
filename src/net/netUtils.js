@@ -1,14 +1,14 @@
 import store from '@/store'
 import { startLoading, closeLoading } from '@/util'
 // post,get方法统一包装
-export const requestFunc = async ({ url, data, isLoad = true, globalLoading, func }) => {
+export const requestFunc = async ({ url, data, page, isLoad = true, globalLoading, func }) => {
   // 无论resolve还是reject都返回一个结果
   let tabId = store.state.tab.currentTab
   let loadingStatus = globalLoading || store.state.isGlobalLoading
 
   try {
     isLoad && startLoading(store, tabId, loadingStatus)
-    let res = await func(url, data)
+    let res = await func(url, data, page)
     isLoad && closeLoading(store, tabId, loadingStatus)
     if (res.code === '0000') {
       return { result: res.data || true, page: res.page }

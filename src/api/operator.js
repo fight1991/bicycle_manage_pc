@@ -42,7 +42,8 @@ export const recordDetail = (data) => {
 export const recordList = ({ data, page }) => {
   return $post({
     url: '/ebike-management/operator/getRecordFilingList',
-    data
+    data,
+    page
   })
 }
 // 报废审核
