@@ -9,10 +9,11 @@ let {
 } = interceptors
 
 // 入参统一包装
-const paramsPack = (data) => {
+const paramsPack = (data, page = {}) => {
   return {
-    accessType: 'web',
-    data
+    accessType: 'pc',
+    data,
+    page
   }
 }
 
@@ -39,31 +40,31 @@ const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_USER_BUSINESS, '/api/bu
 const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE, '/api/file')['instance']
 
 // 初始化post方法
-const userPostInstance = (url, data) => {
-  return Fetch_USER['post'](url, paramsPack(data))
+const userPostInstance = (url, data, page) => {
+  return Fetch_USER['post'](url, paramsPack(data, page))
 }
-const businessPostInstance = (url, data) => {
-  return Fetch_BUSINESS['post'](url, paramsPack(data))
+const businessPostInstance = (url, data, page) => {
+  return Fetch_BUSINESS['post'](url, paramsPack(data, page))
 }
 // 初始化upload方法
 const uploadInstance = (url, data) => {
   return Fetch_UPLOAD['post'](url, paramsPack(data), { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 // 初始化批量请求all方法
-const allInstance = (data) => {
-  return Promise.all(paramsPack(data))
+const allInstance = (data, page) => {
+  return Promise.all(paramsPack(data, page))
 }
 
-export const $post_user = ({ url, data, isLoad, globalLoading }) => {
-  return requestFunc({ url, data, isLoad, globalLoading, func: userPostInstance })
+export const $post_user = ({ url, data, page, isLoad, globalLoading }) => {
+  return requestFunc({ url, data, page, isLoad, globalLoading, func: userPostInstance })
 }
-export const $post_business = ({ url, data, isLoad, globalLoading }) => {
-  return requestFunc({ url, data, isLoad, globalLoading, func: businessPostInstance })
+export const $post_business = ({ url, data, page, isLoad, globalLoading }) => {
+  return requestFunc({ url, data, page, isLoad, globalLoading, func: businessPostInstance })
 }
 export const $upload = ({ url, data, isLoad, globalLoading }) => {
   return requestFunc({ url, data, isLoad, globalLoading, func: uploadInstance })
 }
-export const $all = ({ data, isLoad, globalLoading }) => {
+export const $all = ({ data, page, isLoad, globalLoading }) => {
   // data数据类型为 List<Promise>
-  return allFunc({ data, isLoad, globalLoading, func: allInstance })
+  return allFunc({ data, page, isLoad, globalLoading, func: allInstance })
 }
