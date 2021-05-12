@@ -13,7 +13,7 @@ export default {
       name: 'bus-businessH-record',
       meta: {
         permission: [2, 3, 255],
-        title: '备案审核',
+        title: '居民车备案审核',
         component: () => import(/* webpackChunkName: "bus-businessH-record" */ '@/views/pages/businessHandle/recordList')
       }
     }, {
@@ -30,7 +30,7 @@ export default {
       name: 'bus-businessH-change',
       meta: {
         permission: [1, 2, 3, 255],
-        title: '备案人变更',
+        title: '居民车备案人变更',
         component: () => import(/* webpackChunkName: "bus-businessH-change" */ '@/views/pages/businessHandle/changeList')
       }
     }, {
@@ -47,7 +47,7 @@ export default {
       name: 'bus-businessH-scrap',
       meta: {
         permission: [1, 2, 3, 255],
-        title: '报废审核',
+        title: '居民车报废审核',
         component: () => import(/* webpackChunkName: "bus-businessH-scrap" */ '@/views/pages/businessHandle/scrapList')
       }
     }, {

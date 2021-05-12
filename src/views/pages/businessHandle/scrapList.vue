@@ -67,8 +67,8 @@ export default {
       resultList: [],
       pagination: {
         pageSize: 10,
-        currPage: 1,
-        count: 0
+        pageIndex: 1,
+        total: 0
       },
       tableHead: [
         {
@@ -135,7 +135,7 @@ export default {
       this.search()
     },
     search () {
-      this.pagination.currPage = 1
+      this.pagination.pageIndex = 1
       this.getList(this.pagination)
     },
     // 获取列表
@@ -147,16 +147,15 @@ export default {
         this.searchForm.createdTimeStart = ''
         this.searchForm.createdTimeEnd = ''
       }
-      let { result } = await scrapList({
-        pagination,
-        params: this.searchForm
+      let { result, page } = await scrapList({
+        page: pagination,
+        data: this.searchForm
       })
       if (result) {
-        let { pagination, list } = result
-        this.resultList = list || []
-        this.pagination.count = pagination.count
-        this.pagination.currPage = pagination.currPage
-        this.pagination.pageSize = pagination.pageSize
+        this.resultList = result || []
+        this.pagination.total = page.total
+        this.pagination.pageIndex = page.pageIndex
+        this.pagination.pageSize = page.pageSize
       }
     }
   }

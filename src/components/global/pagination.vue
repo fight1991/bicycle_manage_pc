@@ -1,15 +1,15 @@
 <template>
-  <div class="pagination" v-if='pagination.count != 0'>
+  <div class="pagination" v-if='pagination.total != 0'>
     <el-pagination
       background
       :small="small"
       :pager-count= "5"
       @current-change="currentChange"
       @size-change="sizeChange"
-      :current-page.sync="pagination.currPage"
+      :current-page.sync="pagination.pageIndex"
       :page-sizes="pageSizes"
       :page-size="pagination.pageSize"
-      :total="pagination.count"
+      :total="pagination.total"
       :layout="layout">
     </el-pagination>
   </div>
@@ -55,14 +55,14 @@ export default {
   },
   methods: {
     currentChange (page) {
-      this.pagination.currPage = page
+      this.pagination.pageIndex = page
       this.$emit('change', this.pagination)
       this.$emit('update:pagination', this.pagination)
     },
     sizeChange (size) {
       this.pagination.pageSize = size
-      if ((this.pagination.currPage - 1) * size > this.pagination.count) {
-        this.pagination.currPage = 1
+      if ((this.pagination.pageIndex - 1) * size > this.pagination.total) {
+        this.pagination.pageIndex = 1
       }
       this.$emit('change', this.pagination)
       this.$emit('update:pagination', this.pagination)

@@ -61,8 +61,8 @@ export default {
       selection: [],
       pagination: {
         pageSize: 10,
-        currPage: 1,
-        count: 50
+        pageIndex: 1,
+        total: 50
       },
       tableHead: [
         {
@@ -103,24 +103,22 @@ export default {
       this.search()
     },
     search () {
-      this.pagination.currPage = 1
+      this.pagination.pageIndex = 1
       this.getList(this.pagination)
     },
     // 获取列表
     async getList (pagination) {
       this.selection = []
-      let { result } = await this.$post({
+      let { result, page } = await this.$post({
         url: '/c/v0/module/list',
-        data: {
-          ...pagination,
-          condition: this.searchForm
-        }
+        data: this.searchForm,
+        page: pagination
       })
       if (result) {
-        this.resultList = result.data || []
-        this.pagination.count = result.count
-        this.pagination.currPage = result.currPage
-        this.pagination.pageSize = result.pageSize
+        this.resultList = result || []
+        this.pagination.total = page.total
+        this.pagination.pageIndex = page.pageIndex
+        this.pagination.pageSize = page.pageSize
       }
     }
   }
