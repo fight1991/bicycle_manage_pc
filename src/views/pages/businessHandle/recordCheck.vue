@@ -6,6 +6,26 @@
         <el-form label-position="left" label-width="90px">
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
+              <el-form-item label="申请人:">
+                <div>{{detailForm.idName}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="申请时间:">
+                <div>{{detailForm.createdTime}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="安装方式:">
+                <div>{{detailForm.installationMethods}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="联系方式:">
+                <div>{{detailForm.mobile}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
               <el-form-item label="车牌号码:">
                 <div>{{detailForm.plateNo}}</div>
               </el-form-item>
@@ -27,46 +47,34 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆属性:">
-                <div>{{detailForm.propertiesValue}}</div>
+                <div>{{detailForm.properties}}</div>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="10">
-            <el-col :sm="12" :md="8">
-              <el-form-item label="车辆合格证:">
-                <div class="img-detail">
-                  <el-image class="img" fit="cover" :src="detailForm.urlCertification"></el-image>
-                </div>
-              </el-form-item>
+            <el-col :sm="12" :md="6">
+              <div class="img-detail">
+                <el-image class="img" fit="cover" :src="detailForm.urlCertification"></el-image>
+              </div>
+              <div class="img-text">车辆合格证</div>
             </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="车架图片:">
-                <div class="img-detail">
-                  <el-image class="img" fit="cover" :src="detailForm.urlInvoice"></el-image>
-                </div>
-              </el-form-item>
+            <el-col :sm="12" :md="6">
+              <div class="img-detail">
+                <el-image class="img" fit="cover" :src="detailForm.urlInvoice"></el-image>
+              </div>
+              <div class="img-text">购车发票</div>
             </el-col>
-          </el-row>
-          <el-row :gutter="10">
-            <el-col :sm="12" :md="8">
-              <el-form-item label="申请人:">
-                <div>{{detailForm.idName}}</div>
-              </el-form-item>
+             <el-col :sm="12" :md="6">
+              <div class="img-detail">
+                <el-image class="img" fit="cover" :src="detailForm.urlVin"></el-image>
+              </div>
+              <div class="img-text">车架号图片</div>
             </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="申请时间:">
-                <div>{{detailForm.createdTime}}</div>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="安装方式:">
-                <div>{{detailForm.installationMethodsValue}}</div>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="联系方式:">
-                <div>{{detailForm.mobile}}</div>
-              </el-form-item>
+             <el-col :sm="12" :md="6">
+              <div class="img-detail">
+                <el-image class="img" fit="cover" :src="detailForm.urlMotorNo"></el-image>
+              </div>
+              <div class="img-text">电动机编码图片</div>
             </el-col>
           </el-row>
         </el-form>
@@ -129,8 +137,13 @@ export default {
   display: flex;
 }
 .img-detail, .img {
-  width: 180px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
+}
+.img-text {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
 }
 .img-detail {
   background-color: @sys-bg;

@@ -114,15 +114,10 @@ export default {
     this.pageFlag = pageFlag
     this.search()
   },
-  watch: {
-    '$route': function () {
-      this.search()
-    }
-  },
   methods: {
     routeTo (row) {
       let { accountId, vehicleId } = row
-      this.$tab.append({
+      this.$tab.replace({
         name: 'bus-businessH-recordCheck',
         query: {
           accountId,
