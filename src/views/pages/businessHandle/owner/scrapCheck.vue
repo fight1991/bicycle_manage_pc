@@ -3,7 +3,7 @@
     <card-box>
       <!-- 表单回显区域 -->
       <div class="part-one">
-        <el-form label-position="left" label-width="90px">
+        <el-form label-position="left" label-width="100px">
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
               <el-form-item label="车牌号码:">
@@ -30,6 +30,26 @@
                 <div>{{detailForm.propertiesValue}}</div>
               </el-form-item>
             </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="申请人:">
+                <div>{{detailForm.idName}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="申请时间:">
+                <div>{{detailForm.createdTime}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="联系方式:">
+                <div>{{detailForm.mobile}}</div>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12" :md="8">
+              <el-form-item label="申请原因:">
+                <div>{{detailForm.failReason}}</div>
+              </el-form-item>
+            </el-col>
           </el-row>
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
@@ -42,30 +62,8 @@
             <el-col :sm="12" :md="8">
               <el-form-item label="车架图片:">
                 <div class="img-detail">
-                  <el-image class="img" fit="cover" :src="detailForm.urlInvoice"></el-image>
+                  <el-image class="img" fit="cover" :src="detailForm.vehicleImage"></el-image>
                 </div>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="10">
-            <el-col :sm="12" :md="8">
-              <el-form-item label="申请人:">
-                <div>{{detailForm.idName}}</div>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="申请时间:">
-                <div>{{detailForm.createdTime}}</div>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="安装方式:">
-                <div>{{detailForm.installationMethodsValue}}</div>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12" :md="8">
-              <el-form-item label="联系方式:">
-                <div>{{detailForm.mobile}}</div>
               </el-form-item>
             </el-col>
           </el-row>
@@ -74,8 +72,8 @@
       <!-- 审核意见区域 -->
       <div class="part-two">
         <check
-          type="record"
-          :ways="detailForm.installationMethods || ''"
+          type="scrap"
+          :ways="''"
           :accountId="accountId"
           :vehicleId="vehicleId">
         </check>
@@ -84,8 +82,9 @@
   </section>
 </template>
 <script>
-import check from './components/check'
-import { recordDetail } from '@/api/operator'
+import check from '../components/check'
+import { scrapDetail } from '@/api/operator'
+
 export default {
   components: {
     check
@@ -106,7 +105,7 @@ export default {
   methods: {
     // 获取详情
     async getDetail () {
-      let { result } = await recordDetail({
+      let { result } = await scrapDetail({
         accountId: this.accountId,
         vehicleId: this.vehicleId
       })

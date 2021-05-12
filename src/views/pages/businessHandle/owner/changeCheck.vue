@@ -66,7 +66,7 @@
   </section>
 </template>
 <script>
-import check from './components/check'
+import check from '../components/check'
 import { changeDetail } from '@/api/operator'
 export default {
   components: {
