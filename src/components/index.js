@@ -6,6 +6,7 @@ import SeachButton from './global/searchButton'
 import CardBox from './global/cardBox'
 import CellBtn from './global/cellBtn'
 import CommonDialog from './global/commonDialog'
+import Upload from './global/upload'
 
 /**
  * 以懒加载的方式加载如下组件
@@ -25,5 +26,6 @@ export default {
     Vue.component('card-box', CardBox)
     Vue.component('cell-btn', CellBtn)
     Vue.component('common-dialog', CommonDialog)
+    Vue.component('upload', Upload)
   }
 }

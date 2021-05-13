@@ -86,6 +86,7 @@
         <el-button size="small" type="primary">保存</el-button>
       </el-row>
     </div>
+    <upload></upload>
   </section>
 </template>
 
