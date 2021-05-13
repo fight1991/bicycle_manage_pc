@@ -16,6 +16,14 @@ export default {
         title: '安装员配置',
         component: () => import(/* webpackChunkName: "bus-businessD-installer" */ './installerList')
       }
+    }, {
+      path: '/bus/businessD/corpList',
+      name: 'bus-businessD-corpList',
+      meta: {
+        permission: [2, 3, 255],
+        title: '民生企业管理',
+        component: () => import(/* webpackChunkName: "bus-businessD-corpList" */ './corpList')
+      }
     }
   ]
 }
