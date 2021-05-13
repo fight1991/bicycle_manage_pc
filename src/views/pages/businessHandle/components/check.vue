@@ -5,13 +5,13 @@
         <div class="form-item">
           <el-form-item label="审核结果">
             <el-radio-group v-model="checkForm.status">
-              <el-radio label="Success">通过</el-radio>
-              <el-radio label="Fail">不通过</el-radio>
+              <el-radio label="success">通过</el-radio>
+              <el-radio label="failure">不通过</el-radio>
             </el-radio-group>
           </el-form-item>
         </div>
       </el-row>
-      <el-row :gutter="10" v-show="checkForm.status == 'Fail'">
+      <el-row :gutter="10" v-show="checkForm.status == 'failure'">
         <div class="form-item">
           <el-form-item label="不通过原因" prop="failReason">
             <el-input
@@ -53,20 +53,8 @@ export default {
   data () {
     return {
       checkForm: {
-        status: 'Success',
+        status: 'success',
         failReason: ''
-      },
-      statusParams: {
-        // 申报的审核状态
-        recordFail: 14,
-        recordSuccess0: 15, // 15:审核通过, 邮寄车牌
-        recordSuccess1: 16, // 16:审核通过, 安装点安装
-        // 变更的审核状态
-        changeFail: 42,
-        changeSuccess: 43,
-        // 报废的审核状态
-        scrapFail: 32,
-        scrapSuccess: 33
       },
       rules: {
         failReason: [{ required: true, message: '原因必填', trigger: 'blur' }]
@@ -74,37 +62,36 @@ export default {
     }
   },
   computed: {
-    statusCode () {
-      let { ways, type, checkForm } = this
-      return this.statusParams[type + checkForm.status + ways]
-    }
+
   },
   methods: {
     // 表单提交
     async submitBtn () {
       let { failReason, status } = this.checkForm
       let isPass = true
-      if (status === 'Fail') { // 选择了审核不通过
+      if (status === 'failure') { // 选择了审核不通过
         this.$refs.form.validate(valid => (isPass = valid))
       }
       if (!isPass) return
       let { result } = await opApi[this.pageFlag][this.type]({
         accountId: this.accountId,
         vehicleId: this.vehicleId,
-        status: this.statusCode,
+        status,
         failReason
       })
       if (result) {
+        let pageFlag = this.pageFlag || ''
         this.$tab.back({
-          name: 'bus-businessH-' + this.type,
+          name: 'bus-businessH-' + pageFlag + this.type,
           refresh: true
         })
       }
     },
     // 取消按钮, 关闭当前页签, 并刷新返回列表页
     cancelBtn () {
+      let pageFlag = this.pageFlag || ''
       this.$tab.back({
-        name: 'bus-businessH-' + this.type
+        name: 'bus-businessH-' + pageFlag + this.type
       })
     }
   }

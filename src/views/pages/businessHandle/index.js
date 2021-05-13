@@ -63,8 +63,8 @@ export default {
         component: () => import(/* webpackChunkName: "bus-businessH-scrapCheck" */ '@/views/pages/businessHandle/scrapCheck')
       }
     }, {
-      path: '/bus/businessP/record',
-      name: 'bus-businessP-record',
+      path: '/bus/businessH/industryRecord',
+      name: 'bus-businessH-industryrecord',
       meta: {
         permission: [1, 2, 3, 255],
         title: '行业车备案审核',
@@ -72,8 +72,8 @@ export default {
         component: () => import(/* webpackChunkName: "bus-businessH-record" */ '@/views/pages/businessHandle/recordList')
       }
     }, {
-      path: '/bus/businessP/scrap',
-      name: 'bus-businessP-scrap',
+      path: '/bus/businessH/industryScrap',
+      name: 'bus-businessH-industryscrap',
       meta: {
         permission: [1, 2, 3, 255],
         title: '行业车报废审核',
