@@ -1,3 +1,4 @@
+import { translateDic } from '@/api/dictionary'
 export default {
   data () {
     return {
@@ -27,6 +28,7 @@ export default {
         return Math.abs(temp.toFixed(num))
       }
       return temp.toFixed(num)
-    }
+    },
+    translateDic: translateDic
   }
 }

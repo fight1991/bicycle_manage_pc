@@ -54,14 +54,14 @@
     <!-- 表格区域 -->
     <func-bar>
       <el-row class="table-btn" type="flex" justify="start">
-        <el-button size="mini" icon="iconfont icon-add" @click="routeTo({}, 'add')">添加</el-button>
+        <el-button size="mini" icon="iconfont icon-add" @click="routeTo({}, 'add', '新增')">添加</el-button>
       </el-row>
       <common-table :tableHeadData="tableHead" :tableList="resultList">
         <template #op="{row}">
           <div class="btn-list">
-            <cell-btn color="#0ADD9E" @click.native="routeTo(row, 'edit')">编辑</cell-btn>
+            <cell-btn color="#0ADD9E" @click.native="routeTo(row, 'edit', '编辑')">编辑</cell-btn>
             <cell-btn color="#FA6400" @click.native="updateStatus(row)">下线</cell-btn>
-            <cell-btn @click.native="routeTo(row, 'look')">详情</cell-btn>
+            <cell-btn @click.native="routeTo(row, 'look', '详情')">详情</cell-btn>
           </div>
         </template>
       </common-table>
@@ -185,9 +185,10 @@ export default {
       }
     },
     // 跳转到相关详情页面
-    routeTo (row, type) {
+    routeTo (row, type, title) {
       this.$tab.append({
-        name: '',
+        name: 'bus-businessD-corpOption',
+        tabTitle: '企业' + title,
         query: {
           opType: type,
           orgId: row.orgId || ''

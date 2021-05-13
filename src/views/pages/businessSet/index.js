@@ -24,6 +24,14 @@ export default {
         title: '民生企业管理',
         component: () => import(/* webpackChunkName: "bus-businessD-corpList" */ './corpList')
       }
+    }, {
+      path: '/bus/businessD/corpOption',
+      name: 'bus-businessD-corpOption',
+      meta: {
+        permission: [2, 3, 255],
+        title: '详情',
+        component: () => import(/* webpackChunkName: "bus-businessD-corpOption" */ './option')
+      }
     }
   ]
 }
