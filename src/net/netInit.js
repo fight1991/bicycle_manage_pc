@@ -35,7 +35,7 @@ class InitAxios {
 // 用户相关
 const Fetch_USER = new InitAxios(process.env.VUE_APP_USER_API, '/api/user')['instance']
 // 车辆相关
-const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_USER_BUSINESS, '/api/business')['instance']
+const Fetch_BUSINESS = new InitAxios(process.env.VUE_APP_BUSINESS_API, '/api/business')['instance']
 // 上传
 const Fetch_UPLOAD = new InitAxios(process.env.VUE_APP_FILE, '/api/file')['instance']
 
