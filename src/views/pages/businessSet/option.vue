@@ -1,7 +1,7 @@
 <template>
   <section class="sys-main view-port-min bg-c">
     <div class="content">
-      <el-form size="mini" ref="form" :rules="rules" label-width="120px" label-position="right" :model="dataForm">
+      <el-form size="mini" ref="form" :rules="rules" label-width="140px" label-position="right" :model="dataForm">
         <el-row :gutter="30">
           <el-col :lg="8" :md="12">
             <el-form-item label="企业名称" prop="orgName">
@@ -71,13 +71,13 @@
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12">
-            <el-form-item label="统一社会信用代码" :disabled="inputController" prop="socialCreditCode">
-              <el-input v-model="dataForm.socialCreditCode" clearable></el-input>
+            <el-form-item label="统一社会信用代码" prop="socialCreditCode">
+              <el-input v-model="dataForm.socialCreditCode" :disabled="inputController" clearable></el-input>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12" v-if="!dataForm.branch">
-            <el-form-item label="总部名称" :disabled="inputController" prop="headquarters">
-              <el-input v-model="dataForm.headquarters" clearable></el-input>
+            <el-form-item label="总部名称" prop="headquarters">
+              <el-input v-model="dataForm.headquarters" :disabled="inputController" clearable></el-input>
             </el-form-item>
           </el-col>
         </el-row>

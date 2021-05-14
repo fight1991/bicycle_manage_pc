@@ -189,7 +189,7 @@ export default {
     },
     // 跳转到相关详情页面
     routeTo (row, type, title) {
-      this.$tab.append({
+      this.$tab.replace({
         name: 'bus-businessD-corpOption',
         tabTitle: '企业' + title,
         query: {
