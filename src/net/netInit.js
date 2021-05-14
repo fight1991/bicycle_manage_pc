@@ -48,7 +48,7 @@ const businessPostInstance = (url, data, page) => {
 }
 // 初始化upload方法
 const uploadInstance = (url, data) => {
-  return Fetch_UPLOAD['post'](url, paramsPack(data), { headers: { 'Content-Type': 'multipart/form-data' } })
+  return Fetch_UPLOAD['post'](url, data, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
 // 初始化批量请求all方法
 const allInstance = (data, page) => {
