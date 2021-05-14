@@ -41,6 +41,8 @@ const beforeEach = async (to, from, next) => {
     store.commit('changeFirst', false)
   }
   // 路由跳转鉴别权限
+  console.log(store.state.permissions)
+  console.log(to.meta)
   if (to.meta.permission && !store.state.permissions.includes(to.meta.permission)) {
     _this.$message.error('无权访问此页面,请联系管理员!')
     return

@@ -1,10 +1,10 @@
 // 用户相关api
-import { $post_user as $post } from '@/net/netInit'
+import { $post_user as $post, $post_business as $businesss } from '@/net/netInit'
 
 // 退出登录
 export const loginOut = (data) => {
-  return $post({
-    url: '/data-user/logout',
+  return $businesss({
+    url: '/user-center/logout',
     data
   })
 }
