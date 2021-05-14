@@ -1,7 +1,7 @@
 <template>
   <section class="sys-main view-port-min bg-c">
     <div class="content">
-      <el-form size="mini" label-width="100px" label-position="right" :model="dataForm">
+      <el-form size="mini" label-width="120px" label-position="right" :model="dataForm">
         <el-row :gutter="30">
           <el-col :lg="8" :md="12">
             <el-form-item label="名称">
@@ -70,13 +70,13 @@
           <el-col :lg="8" :md="12">
             <el-form-item label="门店照">
               <!-- urlOrgImage -->
-              <el-image></el-image>
+              <upload width="120" height="120"></upload>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12">
               <!-- urlBusinessLicense -->
             <el-form-item label="营业执照">
-              <el-image></el-image>
+              <upload width="120" height="120"></upload>
             </el-form-item>
           </el-col>
         </el-row>
@@ -86,7 +86,6 @@
         <el-button size="small" type="primary">保存</el-button>
       </el-row>
     </div>
-    <upload></upload>
   </section>
 </template>
 

@@ -10,7 +10,6 @@
       <div
         class="upload-area"
         :style="{'height':height + 'px'}">
-      上传
       <i class="iconfont icon-add"></i>
       <slot></slot>
       </div>
@@ -146,5 +145,9 @@ export default {
 }
 .icon-delete {
   font-size: 30px;
+}
+.icon-add {
+  font-size: 50px;
+  color: #ccc;
 }
 </style>

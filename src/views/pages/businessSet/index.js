@@ -27,6 +27,7 @@ export default {
     }, {
       path: '/bus/businessD/corpOption',
       name: 'bus-businessD-corpOption',
+      hidden: true,
       meta: {
         permission: [2, 3, 255],
         title: '详情',

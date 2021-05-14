@@ -100,7 +100,8 @@ export default {
         {
           label: '企业名称',
           prop: 'orgName',
-          checked: true
+          checked: true,
+          width: 180
         },
         {
           label: '所属行业',
@@ -109,7 +110,7 @@ export default {
         },
         {
           label: '门店地址',
-          prop: 'createdTime',
+          prop: 'address',
           checked: true
         },
         {
@@ -130,12 +131,14 @@ export default {
         {
           label: '创建时间',
           checked: true,
-          prop: 'createdTime'
+          prop: 'createdTime',
+          width: 180
         },
         {
           label: '操作',
           checked: true,
           slotName: 'op',
+          width: 120,
           fixed: 'right'
         }
       ]
