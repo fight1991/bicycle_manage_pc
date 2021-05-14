@@ -6,7 +6,7 @@
         <i class="iconfont icon-delete" @click="deleteImg"></i>
       </div>
     </div>
-    <label v-else for="upload">
+    <label v-else :for="inputId">
       <div
         class="upload-area"
         :style="{'height':height + 'px'}">
@@ -15,7 +15,7 @@
       </div>
     </label>
     <div v-if="showFileName" class="file-name">{{fileName}}</div>
-    <input id="upload" :disabled="isDisabled" :accept="tansformType" style="display: none" @change="uploadChange" type="file"/>
+    <input :id="inputId" :disabled="isDisabled" :accept="tansformType" style="display: none" @change="uploadChange" type="file"/>
   </div>
 </template>
 <script>
@@ -70,7 +70,8 @@ export default {
       fileName: '',
       file: null,
       url: '',
-      localUrl: ''
+      localUrl: '',
+      inputId: 'upload' + Date.now()
     }
   },
   methods: {
