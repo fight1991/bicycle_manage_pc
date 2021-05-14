@@ -10,15 +10,18 @@ export const checkDictionaryVersion = (data) => {
   })
 }
 // 按需查询字典
-export const getDictionaryData = (data) => {
+export const getDictionaryData = (data, resultType = 'map') => {
   return $post({
     url: '/data-dict/dict/batchGetDictDetail',
-    data
+    data: {
+      dictNames: data,
+      resultType
+    }
   })
 }
 
 // 翻译
-export const translateDic = async (dicName) => {
+export const translateDic = async (dicName, type) => {
   let localKey = 'dicData' + dicName
   let localV = 'dicVersion' + dicName
   let localDicData = localStorage.getItem(localKey)
@@ -33,7 +36,7 @@ export const translateDic = async (dicName) => {
   }
   localStorage.setItem(localV, versionInfo[dicName])
   // 重新查询
-  let { result: dicDataInfo } = await getDictionaryData([dicName])
+  let { result: dicDataInfo } = await getDictionaryData([dicName], type)
   if (!dicDataInfo) return {}
   localStorage.setItem(localKey, JSON.stringify(dicDataInfo[dicName]))
   return dicDataInfo[dicName]

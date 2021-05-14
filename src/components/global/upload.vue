@@ -1,8 +1,8 @@
 <template>
   <div class="box" :style="{'width': width + 'px'}">
-    <div v-if="url" class="preivew-img" :style="{'width': width + 'px', 'height':height + 'px'}">
-      <el-image :src="localUrl" fit="contain" class="image-box"></el-image>
-      <div class="mask">
+    <div v-if="src" class="preivew-img" :style="{'width': width + 'px', 'height':height + 'px'}">
+      <el-image :src="localUrl || src" fit="contain" class="image-box"></el-image>
+      <div class="mask" v-if="!isDisabled">
         <i class="iconfont icon-delete" @click="deleteImg"></i>
       </div>
     </div>
@@ -15,7 +15,7 @@
       </div>
     </label>
     <div v-if="showFileName" class="file-name">{{fileName}}</div>
-    <input id="upload" :accept="tansformType" style="display: none" @change="uploadChange" type="file"/>
+    <input id="upload" :disabled="isDisabled" :accept="tansformType" style="display: none" @change="uploadChange" type="file"/>
   </div>
 </template>
 <script>
@@ -28,11 +28,19 @@ export default {
   props: {
     height: {
       type: String,
-      default: '150'
+      default: '120'
     },
     width: {
       type: String,
-      default: '150'
+      default: '120'
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
+    },
+    src: {
+      type: String,
+      default: ''
     },
     showFileName: {
       type: Boolean,
@@ -77,7 +85,7 @@ export default {
       this.url = ''
       this.fileName = ''
       this.file = null
-      this.$emit('update:url', '')
+      this.$emit('update:src', '')
     },
     async remoteUpload () {
       if (!this.file) return
@@ -88,7 +96,7 @@ export default {
       if (url) {
         this.localUrl = window.URL.createObjectURL(this.file)
         this.url = url
-        this.$emit('update:url', url)
+        this.$emit('update:src', url)
       }
     }
   }
