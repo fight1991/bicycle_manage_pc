@@ -4,7 +4,7 @@ export default {
   name: 'bus-data',
   // hidden: true,
   meta: {
-    permission: [1, 2, 3, 255],
+    permission: '0202000000',
     title: '数据查询'
   },
   children: [
@@ -12,7 +12,7 @@ export default {
       path: '/bus/data/bicycle',
       name: 'bus-data-bicycle',
       meta: {
-        permission: [2, 3, 255],
+        permission: '0202010000',
         title: '电动自行车查询',
         component: () => import(/* webpackChunkName: "bus-data-bicycle" */ '@/views/pages/dataSearch/list')
       }
@@ -21,7 +21,7 @@ export default {
       name: 'bus-data-detail',
       hidden: true,
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '0202010000',
         title: '电动自行车详情',
         component: () => import(/* webpackChunkName: "bus-data-bicycleDetail" */ '@/views/pages/dataSearch/detail')
       }

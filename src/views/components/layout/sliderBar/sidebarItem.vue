@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'sidebarItem',
   data () {
@@ -43,7 +44,10 @@ export default {
   computed: {
     firstMenuShow () {
       return !this.menuItem.children || this.menuItem.children.length === 0
-    }
+    },
+    ...mapState({
+      permissions: state => state.permissions
+    })
   },
   props: {
     menuItem: {
@@ -55,10 +59,9 @@ export default {
     }
   },
   methods: {
-    menuPemission (obj = this.menuItem, hh) {
-      // let { meta } = obj
-      // return !meta.permission || (meta.permission && meta.permission.includes(this.access))
-      return true
+    menuPemission (obj = this.menuItem) {
+      let { meta } = obj
+      return !meta.permission || (this.permissions.includes(meta.permission))
     }
   }
 }

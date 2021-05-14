@@ -4,7 +4,7 @@ export default {
   name: 'bus-businessH',
   // hidden: true,
   meta: {
-    permission: [1, 2, 3, 255],
+    permission: '0203000000',
     title: '业务办理'
   },
   children: [
@@ -12,7 +12,7 @@ export default {
       path: '/bus/businessH/record',
       name: 'bus-businessH-record',
       meta: {
-        permission: [2, 3, 255],
+        permission: '0203010000',
         title: '居民车备案审核',
         pageFlag: 'owner',
         component: () => import(/* webpackChunkName: "bus-businessH-record" */ '@/views/pages/businessHandle/recordList')
@@ -22,7 +22,7 @@ export default {
       name: 'bus-businessH-recordCheck',
       hidden: true,
       meta: {
-        permission: [2, 3, 255],
+        permission: '',
         title: '备案审核详情',
         component: () => import(/* webpackChunkName: "bus-businessH-recordCheck" */ '@/views/pages/businessHandle/recordCheck')
       }
@@ -30,7 +30,7 @@ export default {
       path: '/bus/businessH/change',
       name: 'bus-businessH-change',
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '0203020000',
         title: '居民车备案人变更',
         component: () => import(/* webpackChunkName: "bus-businessH-change" */ '@/views/pages/businessHandle/changeList')
       }
@@ -39,7 +39,7 @@ export default {
       name: 'bus-businessH-changeCheck',
       hidden: true,
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '',
         title: '备案人变更审核',
         pageFlag: 'owner',
         component: () => import(/* webpackChunkName: "bus-businessH-changeCheck" */ '@/views/pages/businessHandle/changeCheck')
@@ -48,7 +48,7 @@ export default {
       path: '/bus/businessH/scrap',
       name: 'bus-businessH-scrap',
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '0203030000',
         title: '居民车报废审核',
         pageFlag: 'owner',
         component: () => import(/* webpackChunkName: "bus-businessH-scrap" */ '@/views/pages/businessHandle/scrapList')
@@ -58,7 +58,7 @@ export default {
       name: 'bus-businessH-scrapCheck',
       hidden: true,
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '',
         title: '报废审核详情',
         component: () => import(/* webpackChunkName: "bus-businessH-scrapCheck" */ '@/views/pages/businessHandle/scrapCheck')
       }
@@ -66,7 +66,7 @@ export default {
       path: '/bus/businessH/industryRecord',
       name: 'bus-businessH-industryrecord',
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '0203040000',
         title: '行业车备案审核',
         pageFlag: 'industry',
         component: () => import(/* webpackChunkName: "bus-businessH-record" */ '@/views/pages/businessHandle/recordList')
@@ -75,7 +75,7 @@ export default {
       path: '/bus/businessH/industryScrap',
       name: 'bus-businessH-industryscrap',
       meta: {
-        permission: [1, 2, 3, 255],
+        permission: '0203050000',
         title: '行业车报废审核',
         pageFlag: 'industry',
         component: () => import(/* webpackChunkName: "bus-businessH-scrap" */ '@/views/pages/businessHandle/scrapList')

@@ -4,7 +4,7 @@ export default {
   name: 'bus-businessD',
   hidden: false,
   meta: {
-    permission: [1, 2, 3, 255],
+    permission: '0201000000',
     title: '业务配置'
   },
   children: [
@@ -12,7 +12,7 @@ export default {
       path: '/bus/businessD/installer',
       name: 'bus-businessD-installer',
       meta: {
-        permission: [2, 3, 255],
+        permission: '0201010000',
         title: '安装员配置',
         component: () => import(/* webpackChunkName: "bus-businessD-installer" */ './installerList')
       }
@@ -20,7 +20,7 @@ export default {
       path: '/bus/businessD/corpList',
       name: 'bus-businessD-corpList',
       meta: {
-        permission: [2, 3, 255],
+        permission: '0201020000',
         title: '民生企业管理',
         component: () => import(/* webpackChunkName: "bus-businessD-corpList" */ './corpList')
       }
@@ -29,7 +29,7 @@ export default {
       name: 'bus-businessD-corpOption',
       hidden: true,
       meta: {
-        permission: [2, 3, 255],
+        permission: '0201020000',
         title: '详情',
         component: () => import(/* webpackChunkName: "bus-businessD-corpOption" */ './option')
       }
