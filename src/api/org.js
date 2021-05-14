@@ -29,6 +29,13 @@ export const orgList = ({ data, page }) => {
     page
   })
 }
+// 获取城市列表
+export const cityList = (data) => {
+  return $post({
+    url: '/user-center/org/getCityList',
+    data
+  })
+}
 
 // 更新上下线状态
 /**

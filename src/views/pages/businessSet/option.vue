@@ -107,12 +107,13 @@
 import { orgAdd, orgDetail, orgEdit } from '@/api/org'
 import aMap from '@/views/components/aMap'
 import mapMethods from './mixins/mapMethods'
+import common from './mixins/common'
 const apiObj = {
   add: orgAdd,
   edit: orgEdit
 }
 export default {
-  mixins: [mapMethods],
+  mixins: [mapMethods, common],
   components: {
     aMap
   },
@@ -120,7 +121,6 @@ export default {
     return {
       opType: 'add', // 记录操作类型
       isSelectMap: false,
-      industryList: [],
       dataForm: {
         orgName: '',
         nickName: '',
@@ -183,11 +183,6 @@ export default {
         this.dataForm = result
         this.copyForm = result
       }
-    },
-    async initIndustryList () {
-      let res = await this.translateDic('industry', 'list')
-      this.industryList = res || []
-      return true
     },
     async saveBtn () {
       let isPass = this.validForm()

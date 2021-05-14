@@ -6,12 +6,32 @@
         <el-row :gutter="30">
           <el-col :lg="8" :md="12">
             <el-form-item label="城市">
-              <el-input v-model="searchForm.cityCode" clearable placeholder="请选择"></el-input>
+              <el-select
+                style="width:100%;"
+                v-model="searchForm.cityCode"
+                filterable clearable>
+                <el-option
+                  v-for="item in cityList"
+                  :key="item.cityCode"
+                  :label="item.cityName"
+                  :value="item.cityCode">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12">
             <el-form-item label="所属行业">
-              <el-input v-model="searchForm.industry" clearable placeholder="请选择"></el-input>
+              <el-select
+                style="width:100%;"
+                v-model="searchForm.industry"
+                filterable clearable>
+                <el-option
+                  v-for="item in industryList"
+                  :key="item.code"
+                  :label="item.value"
+                  :value="item.code">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :lg="8" :md="12">
@@ -75,10 +95,14 @@
   </section>
 </template>
 <script>
-import { orgList, updateOrgStatus } from '@/api/org'
+import { orgList, updateOrgStatus, cityList } from '@/api/org'
+import common from './mixins/common'
 export default {
+  mixins: [common],
   data () {
     return {
+      cityList: [],
+      industryList: [],
       searchForm: {
         cityCode: '',
         createdTimeEnd: '',
@@ -148,8 +172,9 @@ export default {
       ]
     }
   },
-  created () {
+  async created () {
     this.search()
+    this.initIndustryList()
   },
   methods: {
     reset () {
@@ -180,6 +205,11 @@ export default {
         this.pagination.pageIndex = page.pageIndex
         this.pagination.pageSize = page.pageSize
       }
+    },
+    // 初始化城市下拉列表
+    async initCityList () {
+      let { result } = await cityList()
+      this.cityList = result || []
     },
     // 下线
     async updateStatus ({ orgId, orgStatus }) {
