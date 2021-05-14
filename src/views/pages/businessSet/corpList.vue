@@ -60,9 +60,12 @@
         <template #op="{row}">
           <div class="btn-list">
             <cell-btn color="#0ADD9E" @click.native="routeTo(row, 'edit', '编辑')">编辑</cell-btn>
-            <cell-btn color="#FA6400" @click.native="updateStatus(row)">下线</cell-btn>
+            <cell-btn color="#FA6400" @click.native="updateStatus(row)">{{row.orgStatus == 'offline' ? '上线' : '下线'}}</cell-btn>
             <cell-btn @click.native="routeTo(row, 'look', '详情')">详情</cell-btn>
           </div>
+        </template>
+        <template #orgStatus="{row}">
+          {{row.orgStatus === 'offline' ? '下线' : '上线'}}
         </template>
       </common-table>
       <div class="page-list">
@@ -94,7 +97,7 @@ export default {
       tableHead: [
         {
           label: '城市',
-          prop: 'city',
+          prop: 'cityName',
           checked: true
         },
         {
@@ -126,7 +129,8 @@ export default {
         {
           label: '上线状态',
           checked: true,
-          prop: 'orgStatus'
+          prop: 'orgStatus',
+          slotName: 'orgStatus'
         },
         {
           label: '创建时间',
@@ -178,9 +182,9 @@ export default {
       }
     },
     // 下线
-    async updateStatus ({ orgId }) {
+    async updateStatus ({ orgId, orgStatus }) {
       let { result } = await updateOrgStatus({
-        orgStatus: 'offline',
+        orgStatus: orgStatus === 'offline' ? 'online' : 'offline',
         orgId
       })
       if (result) {
