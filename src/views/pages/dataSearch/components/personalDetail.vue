@@ -49,7 +49,6 @@ export default {
     }
   },
   mounted () {
-    console.log('啊哈哈')
     this.getDetail(this.aid, this.vid)
   },
   methods: {

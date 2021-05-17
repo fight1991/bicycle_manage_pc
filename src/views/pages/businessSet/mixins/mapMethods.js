@@ -34,14 +34,12 @@ export default {
         // placeSearch.search(e.poi.name)
         // 添加marker
         this.dataForm.address = e.poi.name
-        console.log(e.poi.name)
         addMarker(e.poi.location)
         var geocoder = new AMap.Geocoder()
         let { lng, lat } = e.poi.location
         geocoder.getAddress([lng, lat], (status, result) => {
           if (status === 'complete' && result.regeocode) {
             var addressObj = result.regeocode.addressComponent
-            console.log(result)
             this.countryShortName = 'CN'
             let { citycode, city } = addressObj
             this.initGaodeForm({ lat, lng, citycode, city })
