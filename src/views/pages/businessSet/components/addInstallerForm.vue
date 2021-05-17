@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async remoteMethod (query) {
-      // 输入2个字符开始模糊查询
+      // 输入4个字符开始模糊查询
       if (query && query.trim().length > 3) {
         // 显示loading
         this.loading = true
@@ -73,7 +73,7 @@ export default {
       })
       if (result) {
         // list {accountId, mobile}
-        let tempList = result.list
+        let tempList = result
         if (tempList && tempList.length > 0) {
           this.options = tempList.slice(0, 5)
         } else {
