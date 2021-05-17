@@ -47,22 +47,24 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="申请原因:">
-                <div>{{detailForm.failReason}}</div>
+                <div>{{detailForm.reason}}</div>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
-              <div class="img-detail">
-                <el-image class="img" fit="contain" :src="detailForm.urlCertification"></el-image>
-              </div>
-              <div class="img-text">车辆合格证</div>
+              <el-form-item label="车辆合格证:">
+                <div class="img-detail">
+                  <el-image class="img" fit="contain" :src="detailForm.urlCertification"></el-image>
+                </div>
+              </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
-              <div class="img-detail">
-                <el-image class="img" fit="contain" :src="detailForm.urlVin"></el-image>
-              </div>
-              <div class="img-text">车架号图片</div>
+              <el-form-item label="车架号图片:">
+                <div class="img-detail">
+                  <el-image class="img" fit="contain" :src="detailForm.urlVin"></el-image>
+                </div>
+              </el-form-item>
             </el-col>
           </el-row>
         </el-form>
