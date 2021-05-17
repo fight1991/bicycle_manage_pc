@@ -27,7 +27,7 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆属性:">
-                <div>{{detailForm.propertiesValue}}</div>
+                <div>{{detailForm.properties == 'STANDARD' ? '国标' : '非国标'}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
@@ -53,18 +53,16 @@
           </el-row>
           <el-row :gutter="10">
             <el-col :sm="12" :md="8">
-              <el-form-item label="车辆合格证:">
-                <div class="img-detail">
-                  <el-image class="img" fit="cover" :src="detailForm.urlCertification"></el-image>
-                </div>
-              </el-form-item>
+              <div class="img-detail">
+                <el-image class="img" fit="contain" :src="detailForm.urlCertification"></el-image>
+              </div>
+              <div class="img-text">车辆合格证</div>
             </el-col>
             <el-col :sm="12" :md="8">
-              <el-form-item label="车架图片:">
-                <div class="img-detail">
-                  <el-image class="img" fit="cover" :src="detailForm.vehicleImage"></el-image>
-                </div>
-              </el-form-item>
+              <div class="img-detail">
+                <el-image class="img" fit="contain" :src="detailForm.urlVin"></el-image>
+              </div>
+              <div class="img-text">车架号图片</div>
             </el-col>
           </el-row>
         </el-form>
@@ -125,12 +123,17 @@ export default {
 .img-box {
   display: flex;
 }
-.img-detail, .img {
-  width: 180px;
-  height: 180px;
-}
 .img-detail {
-  background-color: @sys-bg;
-  margin-top: 10px;
+  width: 100%;
+  height: 250px;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+.img-text {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 12px;
 }
 </style>

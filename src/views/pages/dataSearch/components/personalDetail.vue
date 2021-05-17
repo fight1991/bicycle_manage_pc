@@ -49,6 +49,7 @@ export default {
     }
   },
   mounted () {
+    console.log('啊哈哈')
     this.getDetail(this.aid, this.vid)
   },
   methods: {
@@ -66,15 +67,5 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.img-box {
-  display: flex;
-}
-.img-detail, .img {
-  width: 180px;
-  height: 180px;
-}
-.img-detail {
-  background-color: @sys-bg;
-  margin-top: 10px;
-}
+
 </style>

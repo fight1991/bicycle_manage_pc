@@ -79,6 +79,7 @@ export default {
         status,
         failReason
       })
+      console.log(this.pageFlag, this.type)
       if (result) {
         let pageFlag = this.pageFlag || ''
         this.$tab.back({

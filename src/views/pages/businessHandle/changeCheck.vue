@@ -27,7 +27,7 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="车辆属性:">
-                <div>{{detailForm.propertiesValue}}</div>
+                <div>{{detailForm.properties == 'STANDARD' ? '国标' : '非国标'}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">

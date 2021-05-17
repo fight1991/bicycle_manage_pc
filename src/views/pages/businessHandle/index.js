@@ -9,8 +9,8 @@ export default {
   },
   children: [
     {
-      path: '/bus/businessH/record',
-      name: 'bus-businessH-record',
+      path: '/bus/businessH/ownerrecord',
+      name: 'bus-businessH-ownerrecord',
       meta: {
         permission: '0203010000',
         title: '居民车备案审核',
@@ -41,12 +41,11 @@ export default {
       meta: {
         permission: '',
         title: '备案人变更审核',
-        pageFlag: 'owner',
         component: () => import(/* webpackChunkName: "bus-businessH-changeCheck" */ '@/views/pages/businessHandle/changeCheck')
       }
     }, {
-      path: '/bus/businessH/scrap',
-      name: 'bus-businessH-scrap',
+      path: '/bus/businessH/ownerscrap',
+      name: 'bus-businessH-ownerscrap',
       meta: {
         permission: '0203030000',
         title: '居民车报废审核',
@@ -63,7 +62,7 @@ export default {
         component: () => import(/* webpackChunkName: "bus-businessH-scrapCheck" */ '@/views/pages/businessHandle/scrapCheck')
       }
     }, {
-      path: '/bus/businessH/industryRecord',
+      path: '/bus/businessH/industryrecord',
       name: 'bus-businessH-industryrecord',
       meta: {
         permission: '0203040000',
@@ -72,7 +71,7 @@ export default {
         component: () => import(/* webpackChunkName: "bus-businessH-record" */ '@/views/pages/businessHandle/recordList')
       }
     }, {
-      path: '/bus/businessH/industryScrap',
+      path: '/bus/businessH/industryscrap',
       name: 'bus-businessH-industryscrap',
       meta: {
         permission: '0203050000',

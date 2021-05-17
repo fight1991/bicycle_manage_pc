@@ -138,7 +138,7 @@ export const industryScrapCheck = (data) => {
 // 安装员删除
 export const operatorDelete = (data) => {
   return $post({
-    url: '/ebike-management/operator/delete',
+    url: '/user-center/role/delete',
     data
   })
 }
@@ -146,7 +146,7 @@ export const operatorDelete = (data) => {
 // 安装员模糊查询
 export const operatorQuery = (data) => {
   return $post({
-    url: '/ebike-management/operator/fuzzy_query',
+    url: '/user-center/role/fuzzyQuery',
     isLoad: false,
     data
   })
@@ -154,7 +154,7 @@ export const operatorQuery = (data) => {
 // 安装员列表
 export const operatorList = ({ data, page }) => {
   return $post({
-    url: '/ebike-management/operator/list',
+    url: '/user-center/role/list',
     data,
     page
   })
@@ -162,7 +162,7 @@ export const operatorList = ({ data, page }) => {
 // 安装员添加
 export const operatorAdd = (data) => {
   return $post({
-    url: '/ebike-management/operator/post',
+    url: '/user-center/role/add',
     data
   })
 }
