@@ -10,8 +10,8 @@ export const loginOut = (data) => {
 }
 // 登录
 export const goLogin = (data) => {
-  return $post({
-    url: '/data-user/loginByUserName',
+  return $businesss({
+    url: '/user-center/loginByUserName',
     data
   })
 }
@@ -24,8 +24,8 @@ export const createAccount = (data) => {
 }
 // 个人信息 个人详情 查询
 export const getUserInfo = (data) => {
-  return $post({
-    url: '/data-user/user/getUserByToken',
+  return $businesss({
+    url: '/user-center/user/getUserByToken',
     data: localStorage.getItem('token')
   })
 }
@@ -38,8 +38,8 @@ export const changePassword = (data) => {
 }
 // 查询权限
 export const getPermissons = (data) => {
-  return $post({
-    url: '/data-user/user/getUserViews',
+  return $businesss({
+    url: '/user-center/user/getUserViews',
     data
   })
 }

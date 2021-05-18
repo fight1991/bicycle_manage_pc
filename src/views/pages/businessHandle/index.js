@@ -27,8 +27,8 @@ export default {
         component: () => import(/* webpackChunkName: "bus-businessH-recordCheck" */ '@/views/pages/businessHandle/recordCheck')
       }
     }, {
-      path: '/bus/businessH/change',
-      name: 'bus-businessH-change',
+      path: '/bus/businessH/ownerchange',
+      name: 'bus-businessH-ownerchange',
       meta: {
         permission: '0203020000',
         title: '居民车备案人变更',

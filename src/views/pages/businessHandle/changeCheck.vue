@@ -57,6 +57,7 @@
       <div class="part-two">
         <check
           type="change"
+          pageFlag="owner"
           :ways="''"
           :accountId="accountId"
           :vehicleId="vehicleId">
