@@ -10,7 +10,7 @@
         </el-col>
         <el-col :sm="12" :md="8">
           <el-form-item label="性别:">
-            <div>{{detailForm.genderValue}}</div>
+            <div>{{detailForm.gender}}</div>
           </el-form-item>
         </el-col>
         <el-col :sm="12" :md="8">
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import { getUserInfo } from '@/api/user'
+import { getBasicUserInfo } from '@/api/user'
 export default {
   props: ['aid', 'vid'],
   data () {
@@ -54,7 +54,7 @@ export default {
   methods: {
     // 获取详情
     async getDetail (accountId, vehicleId) {
-      let { result } = await getUserInfo({
+      let { result } = await getBasicUserInfo({
         accountId,
         vehicleId
       })

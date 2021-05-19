@@ -29,6 +29,13 @@ export const getUserInfo = (data) => {
     data: localStorage.getItem('token')
   })
 }
+// 个人信息 基础信息查询 传入accountId
+export const getBasicUserInfo = (data) => {
+  return $businesss({
+    url: '/user-center/personal/getBasicInfo',
+    data
+  })
+}
 // 修改密码
 export const changePassword = (data) => {
   return $post({
