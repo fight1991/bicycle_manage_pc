@@ -32,12 +32,12 @@
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="原车主:">
-                <div>{{detailForm.idName1}}</div>
+                <div>{{detailForm.idName}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
               <el-form-item label="原车主联系方式:">
-                <div>{{detailForm.mobile1}}</div>
+                <div>{{detailForm.mobile}}</div>
               </el-form-item>
             </el-col>
             <el-col :sm="12" :md="8">
