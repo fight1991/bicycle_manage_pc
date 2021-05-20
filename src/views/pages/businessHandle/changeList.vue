@@ -88,7 +88,7 @@ export default {
         },
         {
           label: '原车主名',
-          prop: 'idName1',
+          prop: 'idName',
           checked: true
         },
         {
