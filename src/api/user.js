@@ -15,18 +15,11 @@ export const goLogin = (data) => {
     data
   })
 }
-// 创建账号
-export const createAccount = (data) => {
-  return $post({
-    url: '/data-user/addUserName',
-    data
-  })
-}
 // 个人信息 个人详情 查询
 export const getUserInfo = (data) => {
   return $businesss({
-    url: '/user-center/user/getUserByToken',
-    data: localStorage.getItem('token')
+    url: '/user-center/manage-user/getUserInfo',
+    data
   })
 }
 // 个人信息 基础信息查询 传入uid
