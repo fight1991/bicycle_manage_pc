@@ -22,7 +22,7 @@
       </div> -->
       <!-- 用户名 -->
       <div class="tag-box">
-        <el-tag size="small">{{userInfo.username}}</el-tag>
+        <el-tag size="small">{{userInfo.userId}}</el-tag>
       </div>
       <!-- 用户角色 -->
       <!-- <div class="tag-box">
@@ -133,7 +133,7 @@ export default {
           redirect: this.$router.currentRoute.fullPath
         }
       })
-      sessionStorage.setItem('username', this.userInfo.user)
+      sessionStorage.setItem('userId', this.userInfo.user)
       window.open(href, '_self')
     },
     // 注销登录

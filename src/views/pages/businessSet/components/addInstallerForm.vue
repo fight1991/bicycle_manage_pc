@@ -17,7 +17,7 @@
             :loading="loading">
             <el-option
               v-for="item in options"
-              :key="item.accountId"
+              :key="item.uid"
               :label="item.mobile"
               :value="item.mobile">
             </el-option>
@@ -45,10 +45,10 @@ export default {
     }
   },
   computed: {
-    currentAccountId () {
+    currentuid () {
       let obj = this.options.find(v => v.mobile === this.formData.mobile)
       if (obj) {
-        return obj.accountId
+        return obj.uid
       } else {
         return ''
       }
@@ -72,7 +72,7 @@ export default {
         mobile: query
       })
       if (result) {
-        // list {accountId, mobile}
+        // list {uid, mobile}
         let tempList = result
         if (tempList && tempList.length > 0) {
           this.options = tempList.slice(0, 5)
@@ -93,7 +93,7 @@ export default {
       this.$refs.form.validate(valid => (isPass = valid))
       if (!isPass) return
       let { result } = await operatorAdd({
-        accountId: this.currentAccountId
+        uid: this.currentuid
       })
       if (result) {
         this.$message.success('添加成功!')

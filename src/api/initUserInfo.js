@@ -6,7 +6,7 @@ const initUserInfo = async () => {
   if (userInfo) {
     store.commit('setUserInfo', userInfo)
     let { result: permissions } = await getPermissons({
-      accountId: userInfo.accountId,
+      uid: userInfo.uid,
       appId: process.env.VUE_APP_APPID,
       orgId: userInfo.orgId
     })

@@ -158,9 +158,9 @@ export default {
         content: '您确定要删除吗?'
       })
       if (!res) return
-      let { accountId } = row
+      let { uid } = row
       let { result } = await operatorDelete({
-        accountId
+        uid
       })
       if (result) {
         this.$message.success('删除成功!')

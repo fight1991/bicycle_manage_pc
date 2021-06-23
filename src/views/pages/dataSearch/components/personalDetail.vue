@@ -43,7 +43,7 @@ export default {
   props: ['aid', 'vid'],
   data () {
     return {
-      accountId: '',
+      uid: '',
       vehicleId: '',
       detailForm: {}
     }
@@ -53,9 +53,9 @@ export default {
   },
   methods: {
     // 获取详情
-    async getDetail (accountId, vehicleId) {
+    async getDetail (uid, vehicleId) {
       let { result } = await getBasicUserInfo({
-        accountId,
+        uid,
         vehicleId
       })
       if (result) {

@@ -6,10 +6,10 @@
         <el-form ref="form" :model="formData" label-width="0px" :rules="rules">
           <el-row>
             <el-col :span="24">
-              <el-form-item prop="userName">
+              <el-form-item prop="userId">
                 <el-input
                   ref="usernameInput"
-                  v-model="formData.userName"
+                  v-model="formData.userId"
                   placeholder="账号">
                   <i slot="prefix" class="iconfont icon-zhanghao icon-style"></i>
                 </el-input>
@@ -41,12 +41,12 @@ export default {
   data () {
     return {
       formData: {
-        userName: '',
+        userId: '',
         password: ''
       },
       isHide: true,
       rules: {
-        userName: [
+        userId: [
           { required: true, message: '请输入账号', trigger: 'blur' },
           { pattern: /^[a-zA-Z0-9_]{6,32}$/, message: '账号长度6~32位', trigger: 'blur' }
         ],
@@ -66,13 +66,13 @@ export default {
     }
   },
   created () {
-    let username = storage.getStorage('username')
-    if (username) {
-      this.formData.userName = username
+    let userId = storage.getStorage('userId')
+    if (userId) {
+      this.formData.userId = userId
     }
   },
   mounted () {
-    if (this.formData.userName) {
+    if (this.formData.userId) {
       this.$refs.passwordInput.focus()
     } else {
       this.$refs.usernameInput.focus()
@@ -91,7 +91,7 @@ export default {
           // 保存token
           storage.setStorage('token', result.token)
           // 保存用户名
-          storage.setStorage('username', this.formData.userName)
+          storage.setStorage('userId', this.formData.userId)
           this.$store.commit('saveToken', result.token)
           let tempPath = this.$route.query.redirect
           if (tempPath) {

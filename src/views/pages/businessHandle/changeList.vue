@@ -115,11 +115,11 @@ export default {
   },
   methods: {
     routeTo (row) {
-      let { accountId, vehicleId } = row
+      let { uid, vehicleId } = row
       this.$tab.append({
         name: 'bus-businessH-changeCheck',
         query: {
-          accountId,
+          uid,
           vehicleId
         }
       })

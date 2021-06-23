@@ -3,10 +3,10 @@
     <card-box>
       <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="电动自行车信息" name="car">
-          <vehicle-detail :aid="accountId" :vid="vehicleId"></vehicle-detail>
+          <vehicle-detail :aid="uid" :vid="vehicleId"></vehicle-detail>
         </el-tab-pane>
         <el-tab-pane label="车主信息" name="owner">
-          <personal-detail :aid="accountId" :vid="vehicleId"></personal-detail>
+          <personal-detail :aid="uid" :vid="vehicleId"></personal-detail>
         </el-tab-pane>
       </el-tabs>
     </card-box>
@@ -21,14 +21,14 @@ export default {
     personalDetail
   },
   created () {
-    let { accountId, vehicleId } = this.$route.query
-    this.accountId = accountId
+    let { uid, vehicleId } = this.$route.query
+    this.uid = uid
     this.vehicleId = vehicleId
   },
   data () {
     return {
       activeName: 'car',
-      accountId: '',
+      uid: '',
       vehicleId: '',
       busInfo: {}, // 电动自行车信息
       ownerInfo: {} // 车主信息

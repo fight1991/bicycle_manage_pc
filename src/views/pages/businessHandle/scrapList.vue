@@ -121,11 +121,11 @@ export default {
   },
   methods: {
     routeTo (row) {
-      let { accountId, vehicleId } = row
+      let { uid, vehicleId } = row
       this.$tab.append({
         name: 'bus-businessH-scrapCheck',
         query: {
-          accountId,
+          uid,
           vehicleId,
           pageFlag: this.pageFlag
         }

@@ -59,7 +59,7 @@
           type="change"
           pageFlag="owner"
           :ways="''"
-          :accountId="accountId"
+          :uid="uid"
           :vehicleId="vehicleId">
         </check>
       </div>
@@ -75,14 +75,14 @@ export default {
   },
   data () {
     return {
-      accountId: '',
+      uid: '',
       vehicleId: '',
       detailForm: {}
     }
   },
   created () {
-    let { accountId, vehicleId } = this.$route.query
-    this.accountId = accountId
+    let { uid, vehicleId } = this.$route.query
+    this.uid = uid
     this.vehicleId = vehicleId
     this.getDetail()
   },
@@ -90,7 +90,7 @@ export default {
     // 获取详情
     async getDetail () {
       let { result } = await changeDetail({
-        accountId: this.accountId,
+        uid: this.uid,
         vehicleId: this.vehicleId
       })
       if (result) {

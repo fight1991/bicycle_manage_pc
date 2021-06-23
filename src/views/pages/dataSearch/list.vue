@@ -109,11 +109,11 @@ export default {
   },
   methods: {
     routeTo (row) {
-      let { accountId, vehicleId } = row
+      let { uid, vehicleId } = row
       this.$tab.replace({
         name: 'bus-data-detail',
         query: {
-          accountId,
+          uid,
           vehicleId
         }
       })

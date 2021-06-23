@@ -8,11 +8,11 @@ export const upload_token = () => {
   })
 }
 // 私有上传
-export const upload_private = (uploadToken, file, accountId) => {
+export const upload_private = (uploadToken, file, uid) => {
   let formData = new FormData()
   formData.append('uploadToken', uploadToken)
   formData.append('file', file)
-  formData.append('accountId', accountId)
+  formData.append('uid', uid)
   return $upload({
     url: '/bmp-oss/upload/uploadPrivate',
     data: formData
@@ -29,14 +29,14 @@ export const upload_public = (uploadToken, file) => {
   })
 }
 // 获取文件token 并上传图片得到文件服务器中的地址
-export const upload_func_private = async ({ file, accountId }) => {
-  if (!accountId) {
+export const upload_func_private = async ({ file, uid }) => {
+  if (!uid) {
     Message.error('账户id不能为空!')
     return null
   }
   let { result: token } = await upload_token()
   if (!token) return null
-  let { result: res2 } = await upload_private(token, file, accountId)
+  let { result: res2 } = await upload_private(token, file, uid)
   if (!res2) return null  
   return res2
 }

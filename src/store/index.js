@@ -33,8 +33,8 @@ const getters = {
   isLoading (state) {
     return state.loadingNum > 0
   },
-  username (state) {
-    return state.userInfo.userName
+  userId (state) {
+    return state.userInfo.userId
   }
 }
 const mutations = {

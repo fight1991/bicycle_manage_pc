@@ -4,14 +4,14 @@ import { $post_user as $post, $post_business as $businesss } from '@/net/netInit
 // 退出登录
 export const loginOut = (data) => {
   return $businesss({
-    url: '/user-center/logout',
+    url: '/user-center/manage-login/logout',
     data
   })
 }
 // 登录
 export const goLogin = (data) => {
   return $businesss({
-    url: '/user-center/loginByUserName',
+    url: '/user-center/manage-login/loginByUserName',
     data
   })
 }
@@ -29,7 +29,7 @@ export const getUserInfo = (data) => {
     data: localStorage.getItem('token')
   })
 }
-// 个人信息 基础信息查询 传入accountId
+// 个人信息 基础信息查询 传入uid
 export const getBasicUserInfo = (data) => {
   return $businesss({
     url: '/user-center/personal/getBasicInfo',
@@ -39,14 +39,14 @@ export const getBasicUserInfo = (data) => {
 // 修改密码
 export const changePassword = (data) => {
   return $post({
-    url: '/data-user/user/changePassword',
+    url: '/user-center/manage-user/changePassword',
     data
   })
 }
 // 查询权限
 export const getPermissons = (data) => {
   return $businesss({
-    url: '/user-center/user/getUserViews',
+    url: '/user-center/manage-user/getUserViews',
     data
   })
 }

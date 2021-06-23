@@ -49,7 +49,7 @@ const opApi = {
 export default {
   name: 'my-check',
   // ways 0:邮寄到家、1:安装点安装
-  props: ['type', 'ways', 'accountId', 'vehicleId', 'pageFlag'],
+  props: ['type', 'ways', 'uid', 'vehicleId', 'pageFlag'],
   data () {
     return {
       checkForm: {
@@ -74,7 +74,7 @@ export default {
       }
       if (!isPass) return
       let { result } = await opApi[this.pageFlag][this.type]({
-        accountId: this.accountId,
+        uid: this.uid,
         vehicleId: this.vehicleId,
         status,
         failReason

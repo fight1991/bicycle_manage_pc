@@ -85,7 +85,7 @@
           type="record"
           :pageFlag="pageFlag"
           :ways="detailForm.installationMethods || ''"
-          :accountId="accountId"
+          :uid="uid"
           :vehicleId="vehicleId">
         </check>
       </div>
@@ -105,15 +105,15 @@ export default {
   },
   data () {
     return {
-      accountId: '',
+      uid: '',
       vehicleId: '',
       detailForm: {},
       pageFlag: ''
     }
   },
   created () {
-    let { accountId, vehicleId, pageFlag } = this.$route.query
-    this.accountId = accountId
+    let { uid, vehicleId, pageFlag } = this.$route.query
+    this.uid = uid
     this.vehicleId = vehicleId
     this.pageFlag = pageFlag
     this.getDetail()
@@ -122,7 +122,7 @@ export default {
     // 获取详情
     async getDetail () {
       let { result } = await apiMap[this.pageFlag]({
-        accountId: this.accountId,
+        uid: this.uid,
         vehicleId: this.vehicleId
       })
       if (result) {

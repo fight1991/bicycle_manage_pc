@@ -61,8 +61,8 @@ export default {
     tansformType () {
       return this.accept.join(',')
     },
-    accountId () {
-      return this.$store.state.userInfo.accountId
+    uid () {
+      return this.$store.state.userInfo.uid
     }
   },
   data () {
@@ -92,7 +92,7 @@ export default {
       if (!this.file) return
       let url = await uploadApi[this.uploadType]({
         file: this.file,
-        accountId: this.accountId
+        uid: this.uid
       })
       if (url) {
         this.localUrl = window.URL.createObjectURL(this.file)

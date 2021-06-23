@@ -7,12 +7,12 @@ export default {
     localStorage.removeItem(name)
   },
   removeLoginInfo () {
-    localStorage.removeItem('username')
+    localStorage.removeItem('userId')
     localStorage.removeItem('email')
     localStorage.removeItem('phone')
   },
   setUserInfo (userInfo) {
-    userInfo.name && localStorage.setItem('username', userInfo.name)
+    userInfo.name && localStorage.setItem('userId', userInfo.name)
     userInfo.email && localStorage.setItem('email', userInfo.email)
     userInfo.phone && localStorage.setItem('phone', userInfo.phone)
   },
