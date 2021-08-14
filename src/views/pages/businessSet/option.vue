@@ -75,7 +75,7 @@
               <el-input v-model="dataForm.socialCreditCode" :disabled="inputController" clearable></el-input>
             </el-form-item>
           </el-col>
-          <el-col :lg="8" :md="12" v-if="!dataForm.branch">
+          <el-col :lg="8" :md="12" v-if="dataForm.branch">
             <el-form-item label="总部名称" prop="headquarters">
               <el-input v-model="dataForm.headquarters" :disabled="inputController" clearable></el-input>
             </el-form-item>

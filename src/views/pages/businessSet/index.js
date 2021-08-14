@@ -12,7 +12,7 @@ export default {
       path: '/bus/businessD/installer',
       name: 'bus-businessD-installer',
       meta: {
-        permission: '0201010000',
+        permission: '',
         title: '安装员配置',
         component: () => import(/* webpackChunkName: "bus-businessD-installer" */ './installerList')
       }
