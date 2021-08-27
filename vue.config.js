@@ -2,10 +2,9 @@ const path = require('path')
 const SpritesmithPlugin = require('webpack-spritesmith') // 雪碧图插件
 const templateFunc = require(path.join(__dirname, './spriteTemplate')) // 雪碧图文件模板
 const CompressionPlugin = require('compression-webpack-plugin') // Gzip压缩
-const FileManagerPlugin = require('filemanager-webpack-plugin') // 将build后的文件压缩
 const webpackConfig = {
   publicPath: '/', // 应用部署路径
-  outputDir: process.env.NODE_ENV === 'production' ? 'dist/生产' : 'dist/测试', // 生产环境构建目录
+  outputDir: 'dist', // 生产环境构建目录
   assetsDir: 'assets', // 放置生成的静态资源
   lintOnSave: process.env.NODE_ENV !== 'production', // 生产环境不启用lint
   runtimeCompiler: false, // 是否在 Vue 组件中使用 template 选项
@@ -29,7 +28,7 @@ const webpackConfig = {
     },
     open: true,
     host: '127.0.0.1',
-    port: 9009,
+    port: 9019,
     https: true,
     hotOnly: false,
     proxy: { // 设置代理
@@ -74,7 +73,7 @@ const webpackConfig = {
     plugins: [
       new SpritesmithPlugin({
         src: {
-          cwd: './src/assets/plantIcon',
+          cwd: './src/assets/icons',
           glob: '*.png'
         },
         target: {
@@ -143,18 +142,6 @@ if (process.env.NODE_ENV === 'production') {
     threshold: 10240, // 对超过10k的数据压缩
     deleteOriginalAssets: false // 不删除源文件
   })
-  // 压缩打包后的文件包
-  let tempFileManager = new FileManagerPlugin({
-    onEnd: {
-      delete: [ // 首先需要删除项目根目录下的dist.zip
-        './dist/生产.zip',
-      ],
-      archive: [ // 然后我们选择dist文件夹将之打包成dist.zip并放在根目录
-        { source: './dist/生产', destination: './dist/生产.zip' }
-      ]
-    }
-  })
   webpackConfig.configureWebpack.plugins.push(tempCompress)
-  webpackConfig.configureWebpack.plugins.push(tempFileManager)
 }
 module.exports = webpackConfig

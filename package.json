@@ -9,8 +9,9 @@
     "prod": "vue-cli-service serve --mode prod",
     "build": "vue-cli-service build --mode prod",
     "serve": "vue-cli-service serve --mode dev",
-    "test-pack": "vue-cli-service build --mode test",
-    "dev-pack": "vue-cli-service build --mode dev",
+    "build:prod": "vue-cli-service build --mode prod",
+    "build:test": "vue-cli-service build --mode test",
+    "build:dev": "vue-cli-service build --mode dev",
     "build-all": "concurrently \"npm run test-pack\" \"npm run dev-pack\"",
     "lint": "vue-cli-service lint"
   },
